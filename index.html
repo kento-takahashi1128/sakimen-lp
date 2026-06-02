@@ -1,0 +1,1537 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>サキメン | AIが、先に面談。業務委託採用の一次面談AI - 合同会社Miate</title>
+<meta name="description" content="サキメンは、業務委託採用に特化した一次面談AI。候補者は招待URLから24時間いつでも受験、AIが人柄・スキル・リテラシーを自動可視化。本当に会いたい人にだけ時間を使えます。月額6,800円から。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700;800;900&family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg-base: #ffffff;
+  --bg-soft: #faf8f9;
+  --bg-tint: #fdf4f8;
+  --bg-pink: #fbf1f6;
+  --text-primary: #1a1a1a;
+  --text-body: #333333;
+  --text-secondary: #6b6b6b;
+  --text-muted: #999999;
+  --accent: #921B65;
+  --accent-deep: #6a134a;
+  --accent-soft: #f5e4ec;
+  --accent-purple: #4a1f5e;
+  --border: #ececec;
+  --border-soft: #f3f3f3;
+  --grad-primary: linear-gradient(135deg, #921B65 0%, #4a1f5e 100%);
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Hiragino Sans", sans-serif;
+  background: var(--bg-base);
+  color: var(--text-body);
+  line-height: 1.85;
+  font-feature-settings: "palt";
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: 0.02em;
+  line-break: strict;
+  text-wrap: pretty;
+}
+h1, h2, h3, .section-title, .hero-title, .about-lead, .def-panel-title,
+.strength-title, .problem-title, .flow-title, .final-cta-title,
+.effect-mini-title, .def-lead {
+  text-wrap: balance;
+}
+.nb { display: inline-block; }
+.container { max-width: 1140px; margin: 0 auto; padding: 0 28px; }
+.container-narrow { max-width: 920px; margin: 0 auto; padding: 0 28px; }
+
+/* ===== HEADER ===== */
+header {
+  position: fixed; top: 0; left: 0; right: 0;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-soft);
+  z-index: 100;
+}
+.header-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 28px; max-width: 1140px; margin: 0 auto;
+}
+.logo { display: flex; align-items: baseline; gap: 12px; }
+.logo-main {
+  font-family: "Noto Sans JP", "Hiragino Sans", sans-serif;
+  font-weight: 700; font-size: 28px;
+  letter-spacing: 0.06em; line-height: 1;
+  background: linear-gradient(135deg, #921B65 0%, #4a1f5e 100%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+}
+.logo-credit {
+  font-size: 10px; color: var(--text-muted);
+  letter-spacing: 0.1em; font-weight: 500;
+}
+.logo-credit strong { color: var(--text-secondary); font-weight: 700; letter-spacing: 0.05em; }
+.logo-mark, .logo-sub { display: none; }
+footer .logo-main {
+  background: linear-gradient(135deg, #ff8fc4 0%, #c87bb5 100%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+}
+footer .logo-credit { color: rgba(255,255,255,0.45); }
+footer .logo-credit strong { color: rgba(255,255,255,0.85); }
+.nav-links { display: flex; gap: 30px; }
+.nav-links a {
+  font-size: 13px; font-weight: 500; color: var(--text-body);
+  text-decoration: none; letter-spacing: 0.05em; transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--accent); }
+.nav-cta {
+  background: var(--grad-primary); color: #fff;
+  padding: 12px 26px; border-radius: 100px;
+  font-weight: 600; font-size: 13px;
+  text-decoration: none; transition: opacity 0.2s, transform 0.2s;
+  letter-spacing: 0.05em; white-space: nowrap;
+}
+.nav-cta:hover { opacity: 0.9; transform: translateY(-1px); }
+
+/* ===== HERO ===== */
+.hero {
+  position: relative;
+  padding: 150px 28px 100px;
+  background:
+    radial-gradient(circle at 88% 18%, rgba(146, 27, 101, 0.07) 0%, transparent 52%),
+    radial-gradient(circle at 10% 85%, rgba(74, 31, 94, 0.04) 0%, transparent 50%),
+    var(--bg-base);
+}
+.hero-grid {
+  max-width: 1140px; margin: 0 auto;
+  display: grid; grid-template-columns: 1.05fr 0.95fr;
+  gap: 56px; align-items: center;
+}
+.hero-eyebrow {
+  font-size: 12px; font-weight: 700; color: var(--accent);
+  letter-spacing: 0.25em; margin-bottom: 26px;
+  display: flex; align-items: center; gap: 14px;
+}
+.hero-eyebrow::before {
+  content: ''; display: block;
+  width: 32px; height: 1px; background: var(--accent);
+}
+h1.hero-title {
+  font-family: "Noto Sans JP", "Hiragino Sans", sans-serif;
+  font-size: clamp(36px, 4.6vw, 56px);
+  font-weight: 600; line-height: 1.36;
+  letter-spacing: 0.04em;
+  color: var(--text-primary);
+  margin-bottom: 18px;
+}
+.hero-title .accent { color: var(--accent); }
+.hero-title-sub {
+  font-family: "Noto Sans JP", "Hiragino Sans", sans-serif;
+  font-size: clamp(16px, 1.9vw, 21px);
+  font-weight: 500; color: var(--text-body);
+  letter-spacing: 0.04em; line-height: 1.7;
+  margin-bottom: 28px;
+}
+.hero-subtitle {
+  font-size: 15px; color: var(--text-body);
+  line-height: 2; margin-bottom: 36px;
+  font-weight: 400;
+}
+.hero-cta-group { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 36px; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--grad-primary); color: #fff;
+  padding: 17px 36px; border-radius: 100px;
+  font-weight: 600; font-size: 15px; letter-spacing: 0.05em;
+  text-decoration: none; transition: all 0.25s;
+  box-shadow: 0 8px 24px rgba(146, 27, 101, 0.18);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(146, 27, 101, 0.28); }
+.btn-primary svg { width: 16px; height: 16px; }
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: transparent; color: var(--text-primary);
+  padding: 17px 34px; border-radius: 100px;
+  font-weight: 600; font-size: 15px; letter-spacing: 0.05em;
+  text-decoration: none; transition: all 0.25s;
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+.hero-badges { display: flex; flex-direction: column; gap: 12px; }
+.hero-badge {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 13.5px; color: var(--text-body); font-weight: 500;
+}
+.hero-badge svg { width: 20px; height: 20px; flex-shrink: 0; }
+.hero-visual { display: flex; justify-content: center; }
+.hero-visual-frame {
+  position: relative; width: 100%; max-width: 460px;
+  border-radius: 24px; overflow: hidden;
+  background: var(--bg-pink);
+  box-shadow: 0 24px 60px rgba(146, 27, 101, 0.18);
+}
+.hero-visual-img { width: 100%; height: auto; display: block; }
+.hero-visual-badge {
+  position: absolute; bottom: 18px; left: 18px;
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(255, 255, 255, 0.96); color: var(--accent);
+  padding: 9px 18px; border-radius: 100px;
+  font-size: 11.5px; font-weight: 700; letter-spacing: 0.18em;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+.hero-visual-badge::before {
+  content: ''; width: 7px; height: 7px; border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 4px rgba(146, 27, 101, 0.18);
+}
+
+/* ===== SECTIONS ===== */
+section { padding: 120px 28px; position: relative; }
+.section-soft { background: var(--bg-soft); }
+.section-pink { background: var(--bg-pink); }
+.section-eyebrow {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 12px; font-weight: 900;
+  color: var(--accent); letter-spacing: 0.25em;
+  margin-bottom: 18px;
+}
+.section-title {
+  font-family: "Noto Sans JP", "Hiragino Sans", sans-serif;
+  font-size: clamp(26px, 3.3vw, 38px);
+  font-weight: 600; letter-spacing: 0.04em;
+  line-height: 1.5; color: var(--text-primary);
+  margin-bottom: 24px;
+}
+.section-subtitle {
+  font-size: 15px; color: var(--text-secondary);
+  line-height: 2; max-width: 740px;
+}
+.section-header { margin-bottom: 68px; }
+.section-header.centered { text-align: center; }
+.section-header.centered .section-subtitle { margin-left: auto; margin-right: auto; }
+
+/* ===== icon circle ===== */
+.ico {
+  width: 62px; height: 62px; border-radius: 50%;
+  background: var(--accent-soft);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.ico svg { width: 30px; height: 30px; }
+
+/* ===== PROBLEMS ===== */
+.problems-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 24px;
+}
+.problem-card {
+  background: var(--bg-base); padding: 44px 36px;
+  border: 1px solid var(--border); border-radius: 6px;
+}
+.problem-card .ico { margin-bottom: 24px; }
+.problem-illust {
+  width: 100%; max-width: 220px;
+  height: 180px;
+  margin: 0 auto 24px;
+  display: flex; align-items: center; justify-content: center;
+}
+.problem-illust img {
+  max-width: 100%; max-height: 100%;
+  width: auto; height: auto;
+  object-fit: contain; display: block;
+}
+.problem-num {
+  font-family: "Noto Sans JP", "Hiragino Sans", sans-serif;
+  font-size: 13px; font-weight: 600; color: var(--accent);
+  letter-spacing: 0.18em; margin-bottom: 14px;
+}
+.problem-title {
+  font-family: "Noto Sans JP", "Hiragino Sans", sans-serif;
+  font-size: 18px; font-weight: 600;
+  line-height: 1.7; margin-bottom: 16px;
+  color: var(--text-primary); letter-spacing: 0.04em;
+}
+.problem-text { font-size: 13.5px; color: var(--text-secondary); line-height: 1.95; }
+.problem-arrow {
+  margin-top: 80px;
+  padding: 46px 32px;
+  background: linear-gradient(135deg, rgba(146,27,101,0.07) 0%, rgba(74,31,94,0.04) 100%);
+  border-radius: 18px;
+  border: 1px solid rgba(146,27,101,0.18);
+  text-align: center;
+}
+.problem-arrow-text {
+  display: inline-flex; align-items: center; gap: 24px;
+  font-family: "Noto Sans JP", "Hiragino Sans", sans-serif;
+  font-size: clamp(22px, 3.4vw, 32px);
+  font-weight: 700; color: var(--accent);
+  letter-spacing: 0.08em; line-height: 1.5;
+  flex-wrap: nowrap;
+}
+.problem-arrow-text::before,
+.problem-arrow-text::after {
+  content: ''; display: block;
+  width: 40px; height: 2px;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+.problem-arrow-mark { display: none; }
+
+/* ===== DEFINITION (サキメンとは) ===== */
+.def-lead {
+  font-family: "Noto Sans JP", "Hiragino Sans", sans-serif;
+  font-size: clamp(20px, 2.6vw, 30px);
+  font-weight: 600; line-height: 1.7; letter-spacing: 0.05em;
+  color: var(--text-primary); text-align: center; margin-bottom: 12px;
+}
+.def-lead .accent { color: var(--accent); }
+.def-note { text-align: center; font-size: 14px; color: var(--text-secondary); margin-bottom: 40px; }
+.def-illust { text-align: center; margin: 0 auto 48px; max-width: 340px; }
+.def-illust img { width: 100%; height: auto; }
+.about-hero {
+  display: grid; grid-template-columns: 1.05fr 0.95fr;
+  gap: 64px; align-items: center;
+  margin-bottom: 84px;
+}
+.about-eyebrow {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 12px; font-weight: 900;
+  color: var(--accent); letter-spacing: 0.25em;
+  margin-bottom: 22px;
+}
+.about-lead {
+  font-family: "Noto Sans JP", "Hiragino Sans", sans-serif;
+  font-size: clamp(25px, 3.4vw, 38px);
+  font-weight: 700; line-height: 1.55;
+  letter-spacing: 0.04em;
+  color: var(--text-primary);
+  margin-bottom: 22px;
+}
+.about-lead .hl {
+  color: var(--accent);
+  background: linear-gradient(transparent 62%, rgba(146,27,101,0.18) 62%);
+  padding: 0 4px;
+}
+.about-note {
+  font-size: 15px; color: var(--text-secondary);
+  line-height: 2;
+}
+.about-visual { display: flex; justify-content: center; }
+.about-visual-frame {
+  width: 100%; max-width: 440px;
+  padding: 28px;
+  background: var(--bg-pink);
+  border-radius: 24px;
+  box-shadow: 0 18px 50px rgba(146, 27, 101, 0.12);
+}
+.about-visual-frame img { width: 100%; height: auto; display: block; }
+.screens-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 28px; margin-bottom: 56px;
+}
+.screen-card {
+  background: var(--bg-base);
+  border: 1px solid var(--border);
+  border-radius: 12px; overflow: hidden;
+  display: flex; flex-direction: column;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.05);
+}
+.screen-label {
+  padding: 18px 26px;
+  font-family: "Noto Sans JP", "Hiragino Sans", sans-serif;
+  font-size: 15px; font-weight: 700;
+  color: var(--text-primary); letter-spacing: 0.06em;
+  background: var(--bg-soft);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 10px;
+}
+.screen-label::before {
+  content: ''; width: 4px; height: 16px;
+  background: var(--accent); border-radius: 2px;
+}
+.screen-frame {
+  width: 100%; aspect-ratio: 16/10;
+  position: relative;
+  background: var(--bg-soft);
+  display: flex; align-items: center; justify-content: center;
+  padding: 18px;
+}
+.screen-frame img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.screen-placeholder {
+  width: 100%; height: 100%;
+  border: 2px dashed #d8c5d1;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 10px; text-align: center; padding: 24px;
+  color: var(--text-muted); font-size: 12.5px; line-height: 1.7;
+}
+.screen-placeholder strong {
+  display: block; color: var(--accent);
+  font-family: "Noto Sans JP", "Hiragino Sans", sans-serif;
+  font-size: 17px; font-weight: 700;
+  margin-bottom: 4px;
+}
+.def-compare {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+}
+.def-panel {
+  border-radius: 8px; padding: 40px 36px;
+}
+.def-panel.before { background: var(--bg-base); border: 1px solid var(--border); }
+.def-panel.after { background: var(--grad-primary); color: #fff; }
+.def-panel-label {
+  display: inline-block; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.14em; padding: 6px 16px; border-radius: 100px;
+  margin-bottom: 24px;
+}
+.def-panel.before .def-panel-label { background: #f0eef0; color: var(--text-secondary); }
+.def-panel.after .def-panel-label { background: rgba(255,255,255,0.2); color: #fff; }
+.def-panel-title {
+  font-family: "Noto Sans JP", "Hiragino Sans", sans-serif;
+  font-size: 21px; font-weight: 800; line-height: 1.55;
+  margin-bottom: 22px; letter-spacing: 0.03em;
+}
+.def-panel.after .def-panel-title { font-weight: 900; font-size: 23px; }
+.def-flow { display: flex; flex-direction: column; gap: 12px; }
+.def-flow-row {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 13.5px; font-weight: 500;
+}
+.def-chip {
+  flex-shrink: 0; padding: 7px 14px; border-radius: 6px;
+  font-size: 12.5px; font-weight: 600;
+}
+.def-panel.before .def-chip { background: var(--bg-soft); border: 1px solid var(--border); color: var(--text-body); }
+.def-panel.after .def-chip { background: rgba(255,255,255,0.16); color: #fff; }
+.def-panel.after .def-chip.solid { background: #fff; color: var(--accent); }
+.def-flow-arrow { color: currentColor; opacity: 0.5; flex-shrink: 0; }
+.def-result {
+  margin-top: 24px; padding-top: 20px;
+  font-size: 13.5px; line-height: 1.8;
+}
+.def-panel.before .def-result { border-top: 1px solid var(--border); color: var(--text-secondary); }
+.def-panel.after .def-result { border-top: 1px solid rgba(255,255,255,0.22); color: rgba(255,255,255,0.92); }
+
+/* ===== STRENGTHS ===== */
+.strength-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 28px;
+}
+.strength-card {
+  background: var(--bg-base);
+  padding: 46px 38px;
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--accent);
+  border-radius: 0 0 6px 6px;
+}
+.strength-card .ico { margin-bottom: 26px; }
+.strength-eyebrow {
+  font-size: 11px; font-weight: 700; color: var(--accent);
+  letter-spacing: 0.22em; margin-bottom: 14px;
+}
+.strength-title {
+  font-family: "Noto Sans JP", "Hiragino Sans", sans-serif;
+  font-size: 20px; font-weight: 600;
+  line-height: 1.65; margin-bottom: 18px; color: var(--text-primary);
+  letter-spacing: 0.04em;
+}
+.strength-desc { color: var(--text-secondary); font-size: 13.5px; line-height: 2; }
+
+/* ===== EFFECT MINI (削減できる時間 - in STRENGTHS) ===== */
+.effect-mini {
+  margin-top: 64px;
+  padding: 44px 36px 36px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 14px 40px rgba(146,27,101,0.08);
+}
+.effect-mini-eyebrow {
+  text-align: center;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 11px; font-weight: 900; letter-spacing: 0.25em;
+  color: var(--accent); margin-bottom: 14px;
+}
+.effect-mini-title {
+  text-align: center;
+  font-family: "Noto Sans JP", "Hiragino Sans", sans-serif;
+  font-size: clamp(20px, 2.6vw, 28px);
+  font-weight: 700; color: var(--text-primary);
+  letter-spacing: 0.04em; line-height: 1.5;
+  margin-bottom: 32px;
+}
+.effect-mini-title .accent { color: var(--accent); }
+.effect-cells {
+  display: grid; grid-template-columns: 1fr auto 1fr auto 1fr;
+  gap: 16px; align-items: stretch;
+}
+.effect-cell {
+  background: var(--bg-soft); border: 1px solid var(--border);
+  border-radius: 12px; padding: 24px 16px; text-align: center;
+  display: flex; flex-direction: column; gap: 8px; justify-content: center;
+}
+.effect-cell.highlight {
+  background: var(--grad-primary); color: #fff; border: none;
+  box-shadow: 0 14px 32px rgba(146,27,101,0.24);
+}
+.effect-cell-label {
+  font-size: 11.5px; font-weight: 600;
+  letter-spacing: 0.05em; color: var(--text-secondary);
+}
+.effect-cell.highlight .effect-cell-label { color: rgba(255,255,255,0.9); }
+.effect-cell-num {
+  font-family: "Noto Sans JP", "Hiragino Sans", sans-serif;
+  font-size: clamp(28px, 4.4vw, 42px); font-weight: 700;
+  color: var(--text-primary); line-height: 1.1; letter-spacing: 0.02em;
+}
+.effect-cell.highlight .effect-cell-num { color: #fff; }
+.effect-cell-num .unit {
+  font-size: 13px; font-weight: 500; margin-left: 4px;
+  color: var(--text-secondary);
+}
+.effect-cell.highlight .effect-cell-num .unit { color: rgba(255,255,255,0.9); }
+.effect-connector {
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; color: var(--accent); font-weight: 300;
+}
+.effect-mini-foot {
+  text-align: center; font-size: 11.5px; color: var(--text-muted);
+  margin-top: 22px; line-height: 1.8;
+}
+@media (max-width: 768px) {
+  .effect-cells { grid-template-columns: 1fr; gap: 10px; }
+  .effect-connector { transform: rotate(90deg); padding: 2px 0; }
+}
+
+/* ===== JOB CATEGORIES ===== */
+.job-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(196px, 1fr));
+  gap: 20px;
+}
+.job-card {
+  padding: 38px 22px 32px; text-align: center;
+  background: var(--bg-base);
+  border: 1px solid var(--border); border-radius: 6px;
+  transition: all 0.3s;
+  display: flex; flex-direction: column; align-items: center;
+}
+.job-card .job-desc { flex: 1; }
+.job-card .job-badge { margin-top: auto; align-self: center; }
+.job-card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 12px 30px rgba(146,27,101,0.08); }
+.job-card.coming-soon { background: var(--bg-soft); }
+.job-icon-circle {
+  width: 134px; height: 134px; border-radius: 16px;
+  background: var(--bg-pink);
+  display: inline-flex; align-items: center; justify-content: center;
+  margin-bottom: 22px; overflow: hidden;
+}
+.job-card.coming-soon .job-icon-circle { background: var(--bg-soft); }
+.job-icon-circle img { width: 100%; height: 100%; object-fit: contain; padding: 10px; box-sizing: border-box; display: block; }
+.job-icon-circle svg { width: 56px; height: 56px; }
+.job-name {
+  font-family: "Noto Sans JP", "Hiragino Sans", sans-serif;
+  font-size: 15.5px; font-weight: 600; margin-bottom: 12px;
+  color: var(--text-primary); letter-spacing: 0.03em;
+}
+.job-card.coming-soon .job-name { color: var(--text-secondary); }
+.job-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.85; margin-bottom: 20px; }
+.job-badge {
+  display: inline-block; padding: 5px 14px;
+  font-size: 10.5px; font-weight: 700;
+  color: var(--accent); letter-spacing: 0.1em;
+  border: 1px solid var(--accent);
+  border-radius: 100px;
+}
+.job-card.coming-soon .job-badge { color: var(--text-muted); border-color: #cfc9cc; }
+
+/* ===== SCREENSHOTS ===== */
+.shots-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 28px;
+}
+.shot-card {
+  background: var(--bg-base);
+  border: 1px solid var(--border);
+  border-radius: 6px; overflow: hidden;
+  box-shadow: 0 6px 28px rgba(0, 0, 0, 0.05);
+  display: flex; flex-direction: column;
+}
+.shot-window {
+  background: var(--bg-soft);
+  border-bottom: 1px solid var(--border);
+  padding: 28px 26px;
+  min-height: 240px;
+}
+.shot-bar { display: flex; gap: 6px; margin-bottom: 22px; }
+.shot-dot { width: 9px; height: 9px; border-radius: 50%; background: #d8d4d6; }
+.shot-caption { padding: 24px 26px; }
+.shot-caption-title {
+  font-family: "Noto Sans JP", "Hiragino Sans", sans-serif;
+  font-size: 15px; font-weight: 600; color: var(--text-primary);
+  margin-bottom: 8px; letter-spacing: 0.03em;
+}
+.shot-caption-text { font-size: 12.5px; color: var(--text-secondary); line-height: 1.85; }
+.mock-chat-row { display: flex; margin-bottom: 12px; }
+.mock-chat-row.right { justify-content: flex-end; }
+.mock-bubble {
+  max-width: 78%; padding: 11px 15px; border-radius: 14px;
+  font-size: 12px; line-height: 1.7;
+}
+.mock-bubble.ai { background: #fff; border: 1px solid var(--border); color: var(--text-body); border-bottom-left-radius: 3px; }
+.mock-bubble.you { background: var(--grad-primary); color: #fff; border-bottom-right-radius: 3px; }
+.mock-score-name {
+  font-family: "Noto Sans JP", "Hiragino Sans", sans-serif;
+  font-size: 13px; font-weight: 600; color: var(--text-primary); margin-bottom: 14px;
+}
+.mock-score-row { display: flex; align-items: center; gap: 10px; margin-bottom: 9px; }
+.mock-score-label { font-size: 10.5px; color: var(--text-secondary); width: 88px; flex-shrink: 0; }
+.mock-score-track { flex: 1; height: 5px; background: #eceaeb; border-radius: 100px; overflow: hidden; }
+.mock-score-fill { height: 100%; background: var(--grad-primary); border-radius: 100px; }
+.mock-score-val { font-family: "Noto Sans JP", "Hiragino Sans", sans-serif; font-size: 11px; font-weight: 600; color: var(--accent); width: 26px; text-align: right; }
+.mock-verdict {
+  margin-top: 16px; display: flex; justify-content: space-between; align-items: center;
+  padding-top: 14px; border-top: 1px solid var(--border);
+}
+.mock-verdict-badge {
+  background: var(--grad-primary); color: #fff;
+  font-size: 11px; font-weight: 700; padding: 5px 16px; border-radius: 4px; letter-spacing: 0.08em;
+}
+.mock-log-line { font-size: 11px; color: var(--text-muted); line-height: 1.9; }
+.mock-log-summary {
+  margin-top: 14px; padding: 14px 16px;
+  background: var(--bg-tint); border-left: 3px solid var(--accent);
+  font-size: 11.5px; color: var(--text-body); line-height: 1.8; border-radius: 0 4px 4px 0;
+}
+.mock-log-summary-label {
+  font-size: 9.5px; font-weight: 700; color: var(--accent);
+  letter-spacing: 0.15em; margin-bottom: 5px;
+}
+
+/* ===== SCENARIOS ===== */
+.scenario-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+.scenario-card {
+  background: var(--bg-base);
+  border: 1px solid var(--border); border-radius: 8px;
+  padding: 36px 32px; display: flex; flex-direction: column;
+}
+.scenario-head { display: flex; align-items: center; gap: 12px; margin-bottom: 22px; }
+.scenario-num {
+  font-family: "Noto Sans JP", "Hiragino Sans", sans-serif;
+  font-size: 12px; font-weight: 700; color: #fff;
+  background: var(--accent); border-radius: 100px;
+  padding: 5px 14px; letter-spacing: 0.08em; white-space: nowrap;
+}
+.scenario-tag { font-size: 12px; font-weight: 600; color: var(--text-secondary); }
+.scenario-block { margin-bottom: 16px; }
+.scenario-block:last-child { margin-bottom: 0; }
+.scenario-label {
+  display: flex; align-items: center; gap: 7px;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+  color: var(--accent); margin-bottom: 6px;
+}
+.scenario-label::before {
+  content: ''; width: 12px; height: 2px; background: var(--accent); display: block;
+}
+.scenario-text { font-size: 13px; color: var(--text-body); line-height: 1.85; }
+.scenario-block.result { margin-top: auto; padding-top: 16px; }
+.scenario-block.result .scenario-text {
+  background: var(--bg-tint); border-radius: 6px; padding: 14px 16px;
+  color: var(--text-primary); font-weight: 500;
+}
+.disclaimer { text-align: center; font-size: 12px; color: var(--text-muted); margin-top: 36px; }
+
+/* ===== CALC (効果試算) ===== */
+.calc-block {
+  background: var(--bg-base);
+  border: 1px solid var(--border); border-radius: 10px;
+  padding: 48px 48px 40px; margin-top: 48px;
+}
+.calc-premise {
+  font-size: 13px; color: var(--text-secondary);
+  background: var(--bg-soft); border-radius: 6px;
+  padding: 14px 18px; margin-bottom: 36px; line-height: 1.8;
+}
+.calc-premise strong { color: var(--accent); font-weight: 700; }
+.calc-bar-row { margin-bottom: 28px; }
+.calc-bar-head {
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin-bottom: 10px;
+}
+.calc-bar-name { font-size: 13.5px; font-weight: 600; color: var(--text-primary); }
+.calc-bar-val {
+  font-family: "Noto Sans JP", "Hiragino Sans", sans-serif; font-weight: 600;
+  font-size: 17px; color: var(--text-primary);
+}
+.calc-bar-val .accent { color: var(--accent); }
+.calc-track { height: 26px; background: var(--bg-soft); border-radius: 6px; overflow: hidden; }
+.calc-fill { height: 100%; border-radius: 6px; }
+.calc-fill.human { background: #d8c5d1; width: 94%; }
+.calc-fill.sakimen { background: var(--grad-primary); width: 21%; }
+.calc-result {
+  margin-top: 32px; padding: 26px 30px;
+  background: var(--grad-primary); color: #fff;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  gap: 16px; flex-wrap: wrap; text-align: center;
+}
+.calc-result-label { font-size: 14px; font-weight: 600; letter-spacing: 0.04em; }
+.calc-result-value {
+  font-family: "Noto Sans JP", "Hiragino Sans", sans-serif;
+  font-size: clamp(26px, 4vw, 38px); font-weight: 600;
+}
+.calc-result-sub { font-size: 12.5px; color: rgba(255,255,255,0.85); }
+.calc-foot { font-size: 11.5px; color: var(--text-muted); margin-top: 20px; line-height: 1.8; }
+
+/* ===== FLOW (ご利用の流れ) ===== */
+.flow-badge-top {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--accent-soft); color: var(--accent);
+  font-size: 12px; font-weight: 700; letter-spacing: 0.06em;
+  padding: 8px 18px; border-radius: 100px; margin-bottom: 14px;
+}
+.flow-cards {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 44px; position: relative;
+}
+.flow-card {
+  background: var(--bg-base);
+  border: 1px solid var(--border); border-radius: 10px;
+  padding: 40px 30px 34px; text-align: center; position: relative;
+}
+.flow-card::after {
+  content: ''; position: absolute; top: 50%; right: -32px;
+  width: 20px; height: 20px;
+  border-top: 3px solid var(--accent); border-right: 3px solid var(--accent);
+  transform: translateY(-50%) rotate(45deg);
+}
+.flow-card:last-child::after { display: none; }
+.flow-num {
+  position: absolute; top: -18px; left: 50%; transform: translateX(-50%);
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--grad-primary); color: #fff;
+  font-family: "Noto Sans JP", "Hiragino Sans", sans-serif; font-weight: 600; font-size: 16px;
+  display: flex; align-items: center; justify-content: center;
+}
+.flow-icon {
+  width: 84px; height: 84px; border-radius: 50%;
+  background: var(--bg-pink);
+  display: flex; align-items: center; justify-content: center;
+  margin: 18px auto 22px;
+}
+.flow-icon svg { width: 42px; height: 42px; }
+.flow-title {
+  font-family: "Noto Sans JP", "Hiragino Sans", sans-serif;
+  font-size: 17px; font-weight: 600; color: var(--text-primary);
+  margin-bottom: 12px; letter-spacing: 0.03em;
+}
+.flow-text { font-size: 13px; color: var(--text-secondary); line-height: 1.9; }
+
+/* ===== COMPARISON ===== */
+.compare-wrap { background: var(--bg-base); overflow-x: auto; }
+.compare-table { width: 100%; border-collapse: collapse; min-width: 620px; }
+.compare-table th, .compare-table td {
+  padding: 20px 20px;
+  border-bottom: 1px solid var(--border);
+  font-size: 13.5px; text-align: left;
+}
+.compare-table th {
+  font-family: "Noto Sans JP", "Hiragino Sans", sans-serif;
+  font-weight: 600; font-size: 15px;
+  color: var(--text-primary);
+  border-bottom: 2px solid var(--text-primary);
+  letter-spacing: 0.04em;
+}
+.compare-table th.highlight { color: var(--accent); border-bottom: 2px solid var(--accent); }
+.compare-table td { color: var(--text-body); }
+.compare-table td.us { color: var(--text-primary); font-weight: 600; background: var(--bg-tint); }
+.compare-table td.muted { color: var(--text-muted); }
+
+/* ===== PRICING ===== */
+.pricing-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  margin-bottom: 24px;
+}
+.pricing-card {
+  padding: 50px 32px;
+  background: var(--bg-base);
+  border: 1px solid var(--border); border-radius: 6px;
+  position: relative; display: flex; flex-direction: column;
+}
+.pricing-card.featured {
+  border: 2px solid var(--accent);
+  box-shadow: 0 20px 60px rgba(146, 27, 101, 0.12);
+}
+.pricing-badge {
+  position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+  background: var(--grad-primary); color: #fff;
+  padding: 8px 24px; border-radius: 100px;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.2em; white-space: nowrap;
+}
+.plan-name {
+  font-family: "Noto Sans JP", "Hiragino Sans", sans-serif;
+  font-size: 15px; font-weight: 600;
+  color: var(--text-primary); letter-spacing: 0.2em;
+  margin-bottom: 8px;
+}
+.pricing-card.featured .plan-name { color: var(--accent); }
+.plan-tagline { font-size: 12px; color: var(--text-muted); margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--border); letter-spacing: 0.03em; }
+.plan-price { display: flex; align-items: baseline; gap: 6px; margin-bottom: 6px; }
+.plan-price-num {
+  font-family: "Noto Sans JP", "Hiragino Sans", sans-serif;
+  font-size: 44px; font-weight: 600;
+  color: var(--text-primary); letter-spacing: 0.02em;
+}
+.plan-price-unit { font-size: 13px; color: var(--text-muted); }
+.plan-unit-note { font-size: 12px; color: var(--accent); font-weight: 600; margin-bottom: 28px; }
+.plan-features { display: flex; flex-direction: column; gap: 13px; margin-bottom: 34px; flex: 1; }
+.plan-feature {
+  display: flex; gap: 11px; align-items: flex-start;
+  font-size: 13.5px; color: var(--text-body); line-height: 1.65;
+}
+.plan-feature.strong { color: var(--text-primary); font-weight: 600; }
+.plan-feature::before {
+  content: "\2713";
+  flex-shrink: 0; width: 17px; height: 17px; margin-top: 2px;
+  background: var(--accent); color: #fff;
+  border-radius: 50%; font-size: 10px; font-weight: 700; line-height: 17px;
+  text-align: center;
+}
+.plan-feature .soon { color: var(--text-muted); font-size: 11px; }
+.plan-cta {
+  display: block; text-align: center;
+  padding: 16px; border-radius: 100px;
+  font-weight: 600; font-size: 13px; letter-spacing: 0.1em;
+  text-decoration: none; transition: all 0.25s;
+}
+.plan-cta.primary { background: var(--grad-primary); color: #fff; }
+.plan-cta.primary:hover { opacity: 0.9; transform: translateY(-1px); }
+.plan-cta.outline { border: 1px solid var(--border); color: var(--text-primary); background: transparent; }
+.plan-cta.outline:hover { border-color: var(--accent); color: var(--accent); }
+
+.enterprise-strip {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 32px; flex-wrap: wrap;
+  background: var(--text-primary); color: #fff;
+  padding: 34px 44px; border-radius: 6px; margin-bottom: 24px;
+}
+.enterprise-info { flex: 1; min-width: 280px; }
+.enterprise-name {
+  font-family: "Noto Sans JP", "Hiragino Sans", sans-serif;
+  font-size: 20px; font-weight: 600; letter-spacing: 0.1em;
+  margin-bottom: 8px;
+}
+.enterprise-desc { font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.85; }
+.enterprise-cta {
+  background: #fff; color: var(--accent);
+  padding: 15px 34px; border-radius: 100px;
+  font-weight: 700; font-size: 13px; letter-spacing: 0.08em;
+  text-decoration: none; white-space: nowrap; transition: transform 0.2s;
+}
+.enterprise-cta:hover { transform: translateY(-2px); }
+.pricing-note {
+  text-align: center; padding: 26px;
+  background: var(--bg-soft);
+  font-size: 13px; color: var(--text-secondary); line-height: 1.95;
+  border-radius: 6px;
+}
+.pricing-note strong { color: var(--text-primary); }
+
+/* ===== FAQ ===== */
+.faq-list { display: flex; flex-direction: column; }
+.faq-item { border-bottom: 1px solid var(--border); }
+.faq-item:first-child { border-top: 1px solid var(--border); }
+.faq-question {
+  width: 100%; padding: 28px 0;
+  background: transparent; border: none; color: var(--text-primary);
+  font-family: "Noto Sans JP", "Hiragino Sans", sans-serif;
+  font-size: 16px; font-weight: 600; text-align: left;
+  display: flex; justify-content: space-between; align-items: center;
+  cursor: pointer; letter-spacing: 0.04em; line-height: 1.6;
+}
+.faq-question:hover { color: var(--accent); }
+.faq-q-mark {
+  font-family: "Noto Sans JP", "Hiragino Sans", sans-serif; color: var(--accent);
+  font-weight: 700; margin-right: 14px; flex-shrink: 0;
+}
+.faq-question::after {
+  content: '+'; font-size: 24px; color: var(--accent);
+  transition: transform 0.2s; font-weight: 300; margin-left: 16px; flex-shrink: 0;
+}
+.faq-item.open .faq-question::after { transform: rotate(45deg); }
+.faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+.faq-item.open .faq-answer { max-height: 600px; }
+.faq-answer-inner { padding: 0 0 32px 32px; color: var(--text-body); font-size: 14px; line-height: 2.1; }
+
+/* ===== FINAL CTA ===== */
+.final-cta {
+  position: relative; padding: 130px 28px;
+  background:
+    radial-gradient(circle at 50% 40%, rgba(146, 27, 101, 0.05) 0%, transparent 70%),
+    var(--bg-soft);
+  text-align: center;
+}
+.final-cta-inner { max-width: 820px; margin: 0 auto; }
+.final-cta-eyebrow {
+  font-size: 12px; font-weight: 700; color: var(--accent);
+  letter-spacing: 0.25em; margin-bottom: 26px;
+}
+.final-cta-title {
+  font-family: "Noto Sans JP", "Hiragino Sans", sans-serif;
+  font-size: clamp(25px, 3.4vw, 37px);
+  font-weight: 600; letter-spacing: 0.04em;
+  line-height: 1.7; margin-bottom: 30px; color: var(--text-primary);
+}
+.final-cta-title .accent { color: var(--accent); }
+.final-cta-text { font-size: 15px; color: var(--text-body); margin-bottom: 44px; line-height: 2; }
+.final-cta-buttons { display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; }
+
+/* ===== FOOTER ===== */
+footer {
+  background: var(--text-primary); color: rgba(255, 255, 255, 0.7);
+  padding: 76px 28px 38px;
+}
+.footer-inner { max-width: 1140px; margin: 0 auto; }
+.footer-top {
+  display: grid; grid-template-columns: 1.4fr 1fr;
+  gap: 48px; padding-bottom: 52px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.footer-brand .logo { color: #fff; margin-bottom: 20px; }
+.footer-brand p { font-size: 13px; line-height: 1.95; color: rgba(255, 255, 255, 0.55); max-width: 460px; }
+.footer-contact-title {
+  font-family: "Noto Sans JP", "Hiragino Sans", sans-serif;
+  font-size: 14px; color: #fff; font-weight: 600;
+  letter-spacing: 0.05em; margin-bottom: 18px;
+}
+.footer-contact-detail { font-size: 13px; color: rgba(255, 255, 255, 0.6); line-height: 1.95; }
+.footer-contact-detail a { color: var(--accent-soft); text-decoration: none; }
+.footer-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: 34px; flex-wrap: wrap; gap: 16px;
+}
+.footer-bottom p { font-size: 12px; color: rgba(255, 255, 255, 0.4); }
+
+@media (max-width: 900px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+  .hero-visual { order: -1; }
+  .def-compare { grid-template-columns: 1fr; }
+  .flow-cards { grid-template-columns: 1fr; gap: 30px; }
+  .flow-card::after { display: none; }
+  .about-hero { grid-template-columns: 1fr; gap: 36px; margin-bottom: 56px; }
+  .about-visual { order: -1; }
+  .screens-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  section { padding: 78px 24px; }
+  .hero { padding: 130px 24px 72px; }
+  .nav-links { display: none; }
+  .pricing-grid { grid-template-columns: 1fr; gap: 24px; }
+  .footer-top { grid-template-columns: 1fr; }
+  .calc-block { padding: 32px 24px; }
+  .compare-table { min-width: 560px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <div class="logo">
+      <span class="logo-main">サキメン</span>
+      <span class="logo-credit">Produced by <strong>Miate</strong></span>
+    </div>
+    <nav class="nav-links">
+      <a href="#about">サービス概要</a>
+      <a href="#strength">選ばれる理由</a>
+      <a href="#pricing">料金</a>
+      <a href="#flow">導入の流れ</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a href="#cta" class="nav-cta">無料で試す</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid">
+    <div class="hero-text">
+      <h1 class="hero-title">
+        AIが、<span class="accent">先に面談。</span>
+      </h1>
+      <div class="hero-title-sub">
+        本当に会いたい人にだけ、あなたの時間を使おう。
+      </div>
+      <p class="hero-subtitle">
+        書類選考だけでは迷う、でも全員と面談する時間はない――そんな経営者・採用担当者のための、業務委託採用に特化した一次面談AI「サキメン」。候補者は招待URLから24時間いつでも受験。AIが人柄・スキル・リテラシーを自動で可視化します。
+      </p>
+      <div class="hero-cta-group">
+        <a href="#cta" class="btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
+          7日間 無料で試す
+        </a>
+        <a href="#pricing" class="btn-secondary">料金プランを見る</a>
+      </div>
+      <div class="hero-badges">
+        <div class="hero-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#921B65" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
+          業務委託採用に特化した、唯一の一次面談AI
+        </div>
+        <div class="hero-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#921B65" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
+          月額6,800円〜・最低契約なしで今月から開始
+        </div>
+        <div class="hero-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#921B65" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
+          候補者は365日24時間、好きなタイミングで受験
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-visual-frame">
+        <img class="hero-visual-img" src="illustrations/01_hero/ai-avatar.png" alt="">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="section-soft" id="problem">
+  <div class="container">
+    <div class="section-header centered">
+      <div class="section-eyebrow">PROBLEM</div>
+      <h2 class="section-title">業務委託採用、<br>こんなお悩みはありませんか。</h2>
+      <p class="section-subtitle">
+        SNS運用代行・制作会社・スタートアップで、業務委託メンバーの採用に多くの時間を奪われていないでしょうか。
+      </p>
+    </div>
+    <div class="problems-grid">
+      <div class="problem-card">
+        <div class="problem-illust">
+          <img src="illustrations/02_problem/p01.png" alt="">
+        </div>
+        <div class="problem-num">PROBLEM 01</div>
+        <h3 class="problem-title">「面談するか迷う」けれど、<br>全員と話す時間はない</h3>
+        <p class="problem-text">書類選考だけでは人柄や実力が見えず、面談すべきか悩む。しかし本業で忙しく、調整・実施・記録まで含めれば1件30分以上かかる面談を、応募者の数だけ繰り返す時間はありません。</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-illust">
+          <img src="illustrations/02_problem/p02.png" alt="">
+        </div>
+        <div class="problem-num">PROBLEM 02</div>
+        <h3 class="problem-title">採用ミスのコストが<br>無視できない</h3>
+        <p class="problem-text">スキルやリテラシーの合わない委託メンバーを採用してしまうと、案件への悪影響、再募集の手間、クライアントからの信頼毀損まで波及し、数十万円以上の損失につながります。</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-illust">
+          <img src="illustrations/02_problem/p03.png" alt="">
+        </div>
+        <div class="problem-num">PROBLEM 03</div>
+        <h3 class="problem-title">評価が属人化し、<br>リテラシーまで見抜けない</h3>
+        <p class="problem-text">面談担当者によって判定基準がブレてしまう。特にクライアントワークで必須となる「著作権意識」や「実績の整合性」まで、限られた時間でチェックするのは困難です。</p>
+      </div>
+    </div>
+    <div class="problem-arrow">
+      <span class="problem-arrow-text">その一次面談、AIに任せられます。</span>
+      <span class="problem-arrow-mark"></span>
+    </div>
+  </div>
+</section>
+
+<!-- DEFINITION -->
+<section id="about">
+  <div class="container">
+    <div class="about-hero">
+      <div class="about-text">
+        <div class="about-eyebrow">WHAT IS SAKIMEN</div>
+        <p class="about-lead">
+          サキメンは、業務委託採用の<br><span class="hl">「一次面談」</span>をAIに<br>任せられるサービスです。
+        </p>
+        <p class="about-note">あなたが面談に使う時間を、<span class="nb">「本当に会いたい人」との二次面談だけに絞り込めます。</span></p>
+      </div>
+      <div class="about-visual">
+        <div class="about-visual-frame">
+          <img src="illustrations/03_about/about.png" alt="">
+        </div>
+      </div>
+    </div>
+    <div class="def-compare">
+      <div class="def-panel before">
+        <span class="def-panel-label">これまで</span>
+        <div class="def-panel-title">応募者全員と、<br>あなたが一次面談</div>
+        <div class="def-flow">
+          <div class="def-flow-row">
+            <span class="def-chip">候補者A〜F</span>
+            <span class="def-flow-arrow">→</span>
+            <span class="def-chip">あなたが全員と面談</span>
+          </div>
+        </div>
+        <div class="def-result">調整・実施・記録に追われ、面談だけで月数時間。「時間がないから書類で決める」という妥協も生まれます。</div>
+      </div>
+      <div class="def-panel after">
+        <span class="def-panel-label">サキメン導入後</span>
+        <div class="def-panel-title">AIが一次面談、<br>あなたは厳選するだけ</div>
+        <div class="def-flow">
+          <div class="def-flow-row">
+            <span class="def-chip">候補者A〜F</span>
+            <span class="def-flow-arrow">→</span>
+            <span class="def-chip">AIが一次面談</span>
+          </div>
+          <div class="def-flow-row">
+            <span class="def-chip">評価レポート</span>
+            <span class="def-flow-arrow">→</span>
+            <span class="def-chip solid">あなたは上位者と二次面談</span>
+          </div>
+        </div>
+        <div class="def-result">あなたの時間を使うのは、レポートの確認と、本当に会いたい人との面談だけ。採用が、ぐっと身軽になります。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STRENGTHS -->
+<section class="section-pink" id="strength">
+  <div class="container">
+    <div class="section-header centered">
+      <div class="section-eyebrow">STRENGTH</div>
+      <h2 class="section-title">サキメンが選ばれる、<br>3つの理由。</h2>
+      <p class="section-subtitle">
+        運用代行業の現場で蓄積した、業務委託採用のノウハウ。その知見をAIに落とし込んでいます。
+      </p>
+    </div>
+    <div class="strength-grid">
+      <div class="strength-card">
+        <div class="ico">
+          <svg viewBox="0 0 32 32" fill="none" stroke="#921B65" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="11"/><circle cx="16" cy="16" r="6"/><circle cx="16" cy="16" r="1.6" fill="#921B65" stroke="none"/></svg>
+        </div>
+        <div class="strength-eyebrow">REASON 01</div>
+        <h3 class="strength-title">業務委託に特化した、<br>見抜く精度。</h3>
+        <p class="strength-desc">Miateが現場で実践してきた採用ノウハウを反映。SNSディレクター・Webデザイナー・動画編集者などの職種別ルーブリックを標準搭載し、人柄や能力を7軸の独自スコアで的確に見極めます。</p>
+      </div>
+      <div class="strength-card">
+        <div class="ico">
+          <svg viewBox="0 0 32 32" fill="none" stroke="#921B65" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M27 16a11 11 0 1 1-3.2-7.8"/><path d="M27 6v6h-6"/><path d="M12 16l3 3 6-6"/></svg>
+        </div>
+        <div class="strength-eyebrow">REASON 02</div>
+        <h3 class="strength-title">あなたの時間を使わず、<br>一次面談を自動化。</h3>
+        <p class="strength-desc">URL発行 → 候補者が自分のペースで受験 → 評価レポートが届く。採用担当の役割は、AIがスクリーニングした結果をもとに最終判断するだけ。煩雑な面談業務から解放されます。</p>
+      </div>
+      <div class="strength-card">
+        <div class="ico">
+          <svg viewBox="0 0 32 32" fill="none" stroke="#921B65" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 27h22"/><path d="M10 27V17"/><path d="M16 27V8"/><path d="M22 27V13"/></svg>
+        </div>
+        <div class="strength-eyebrow">REASON 03</div>
+        <h3 class="strength-title">分析機能で、<br>採用を客観的に可視化。</h3>
+        <p class="strength-desc">担当者の主観や直感に頼っていた採用基準をクリアに可視化。どの求人媒体からの候補者が高ランクなのか、ミスマッチが多いのかといった傾向分析も一目瞭然です。</p>
+      </div>
+    </div>
+
+    <div class="effect-mini">
+      <div class="effect-mini-title">
+        面談にかかる時間を、<span class="accent">約85%削減</span>。
+      </div>
+      <div class="effect-cells">
+        <div class="effect-cell">
+          <div class="effect-cell-label">現状（一次面談）</div>
+          <div class="effect-cell-num">10<span class="unit">時間</span></div>
+        </div>
+        <div class="effect-connector">→</div>
+        <div class="effect-cell">
+          <div class="effect-cell-label">導入後（二次面談のみ）</div>
+          <div class="effect-cell-num">1.5<span class="unit">時間</span></div>
+        </div>
+        <div class="effect-connector">=</div>
+        <div class="effect-cell highlight">
+          <div class="effect-cell-label">削減できる時間</div>
+          <div class="effect-cell-num">8.5<span class="unit">時間</span></div>
+        </div>
+      </div>
+      <p class="effect-mini-foot">
+        ※月10名の応募を1人60分で一次面談している会社が、サキメン導入後は二次面談を3名・30分のみ実施するケースの試算（月あたり）。時給3,000円換算で月およそ25,500円相当の削減。
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- JOB CATEGORIES -->
+<section>
+  <div class="container">
+    <div class="section-header centered">
+      <div class="section-eyebrow">JOB CATEGORIES</div>
+      <h2 class="section-title">職種別の評価モデルを、<br>標準搭載。</h2>
+      <p class="section-subtitle">
+        汎用AI面接ツールでは見抜けない、職種ごとの即戦力要件。<br>
+        SNS・クリエイティブ職に最適化したルーブリックを用意しています。
+      </p>
+    </div>
+    <div class="job-grid">
+      <div class="job-card">
+        <div class="job-icon-circle">
+          <img src="illustrations/08_job_sns/sns.png" alt="">
+        </div>
+        <h3 class="job-name">SNSディレクター</h3>
+        <p class="job-desc">企画力・分析力・媒体特性の理解度を多軸で評価。実績数値の整合性まで自動検証します。</p>
+        <span class="job-badge">標準搭載</span>
+      </div>
+      <div class="job-card">
+        <div class="job-icon-circle">
+          <img src="illustrations/09_job_web/web.png" alt="">
+        </div>
+        <h3 class="job-name">Webデザイナー</h3>
+        <p class="job-desc">デザイン思考・要件理解・著作権や素材選定のリテラシー意識を判定します。</p>
+        <span class="job-badge">標準搭載</span>
+      </div>
+      <div class="job-card">
+        <div class="job-icon-circle">
+          <img src="illustrations/10_job_video/video.png" alt="">
+        </div>
+        <h3 class="job-name">動画編集者</h3>
+        <p class="job-desc">編集スピード・構成力・BGMや素材使用におけるリテラシー意識まで踏み込んで評価します。</p>
+        <span class="job-badge">標準搭載</span>
+      </div>
+      <div class="job-card coming-soon">
+        <div class="job-icon-circle">
+          <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><rect x="11" y="18" width="26" height="16" rx="4" fill="none" stroke="#b9b3b6" stroke-width="2.4"/><rect x="19" y="14" width="10" height="5" rx="2" fill="none" stroke="#b9b3b6" stroke-width="2.4"/><circle cx="24" cy="26" r="6" fill="none" stroke="#b9b3b6" stroke-width="2.4"/></svg>
+        </div>
+        <h3 class="job-name">撮影・カメラマン</h3>
+        <p class="job-desc">機材知識・現場のコミュニケーション力・肖像権など現場リテラシーを網羅した専用モデルを構築中です。</p>
+        <span class="job-badge">COMING SOON</span>
+      </div>
+      <div class="job-card coming-soon">
+        <div class="job-icon-circle">
+          <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M19 17l-8 7 8 7" fill="none" stroke="#b9b3b6" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M29 17l8 7-8 7" fill="none" stroke="#b9b3b6" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 class="job-name">業務委託エンジニア</h3>
+        <p class="job-desc">技術スタック・コミュニケーション・契約遵守意識を独自モデルで評価予定です。</p>
+        <span class="job-badge">COMING SOON</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCREENSHOTS -->
+<section class="section-soft">
+  <div class="container">
+    <div class="section-header centered">
+      <div class="section-eyebrow">DASHBOARD &amp; REVIEWS</div>
+      <h2 class="section-title">直感的な管理画面で、<br>候補者の人柄と能力がひと目でわかる。</h2>
+      <p class="section-subtitle">面談の様子から詳細な分析結果まで、実際の利用イメージをご紹介します。</p>
+    </div>
+    <div class="shots-grid">
+
+      <div class="shot-card">
+        <div class="shot-window">
+          <div class="shot-bar"><span class="shot-dot"></span><span class="shot-dot"></span><span class="shot-dot"></span></div>
+          <div class="mock-chat-row"><div class="mock-bubble ai">これまでの実績で、特に手応えのあった案件を教えてください。</div></div>
+          <div class="mock-chat-row right"><div class="mock-bubble you">美容クリニックのSNS運用で、3ヶ月でフォロワーを2倍に伸ばしました。</div></div>
+          <div class="mock-chat-row"><div class="mock-bubble ai">伸びた要因を、ご自身ではどう分析していますか?</div></div>
+        </div>
+        <div class="shot-caption">
+          <div class="shot-caption-title">AI対話面談の様子</div>
+          <div class="shot-caption-text">スマホやPCで、AIと自然な日本語音声でやり取り。候補者が緊張せず受けられる、親しみやすい面談体験です。</div>
+        </div>
+      </div>
+
+      <div class="shot-card">
+        <div class="shot-window">
+          <div class="shot-bar"><span class="shot-dot"></span><span class="shot-dot"></span><span class="shot-dot"></span></div>
+          <div class="mock-score-name">候補者A / SNSディレクター職</div>
+          <div class="mock-score-row"><span class="mock-score-label">スキル適合度</span><span class="mock-score-track"><span class="mock-score-fill" style="width:88%"></span></span><span class="mock-score-val">8.8</span></div>
+          <div class="mock-score-row"><span class="mock-score-label">コミュニケーション</span><span class="mock-score-track"><span class="mock-score-fill" style="width:92%"></span></span><span class="mock-score-val">9.2</span></div>
+          <div class="mock-score-row"><span class="mock-score-label">リテラシー意識</span><span class="mock-score-track"><span class="mock-score-fill" style="width:95%"></span></span><span class="mock-score-val">9.5</span></div>
+          <div class="mock-score-row"><span class="mock-score-label">実績整合性</span><span class="mock-score-track"><span class="mock-score-fill" style="width:70%"></span></span><span class="mock-score-val">7.0</span></div>
+          <div class="mock-verdict"><span style="font-size:11px;color:var(--text-secondary)">総合判定</span><span class="mock-verdict-badge">推奨</span></div>
+        </div>
+        <div class="shot-caption">
+          <div class="shot-caption-title">AI評価レポート・7軸スコアリング</div>
+          <div class="shot-caption-text">スキル適合度・リテラシー意識・実績整合性などを10点満点で可視化。総合判定がひと目でわかります。</div>
+        </div>
+      </div>
+
+      <div class="shot-card">
+        <div class="shot-window">
+          <div class="shot-bar"><span class="shot-dot"></span><span class="shot-dot"></span><span class="shot-dot"></span></div>
+          <div class="mock-log-line">AI:これまでの実績で…<br>候補者:美容クリニックのSNS運用で…<br>AI:伸びた要因をどう分析…<br>候補者:投稿時間の最適化と…</div>
+          <div class="mock-log-summary">
+            <div class="mock-log-summary-label">AIによる自動要約</div>
+            美容・クリニック領域のSNS運用に強み。データに基づく改善提案ができ、著作権意識も高い。実績数値は具体的で整合性あり。
+          </div>
+        </div>
+        <div class="shot-caption">
+          <div class="shot-caption-title">対話ログ・自動要約</div>
+          <div class="shot-caption-text">面談の文字起こしに加え、AIが要点をコンパクトに要約。長いログを読まずに候補者像を把握できます。</div>
+        </div>
+      </div>
+
+    </div>
+    <p class="disclaimer">※ 上記はイメージです。実際の画面は随時アップデートされます。</p>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section-pink" id="pricing">
+  <div class="container">
+    <div class="section-header centered">
+      <div class="section-eyebrow">PRICING</div>
+      <h2 class="section-title">シンプルな料金プラン。</h2>
+      <p class="section-subtitle">最低契約なし。今月から始めて、合わなければ翌月解約OK。</p>
+    </div>
+    <div class="pricing-grid">
+
+      <div class="pricing-card">
+        <div class="plan-name">LIGHT</div>
+        <div class="plan-tagline">採用が動いていない時期のミニマム</div>
+        <div class="plan-price">
+          <span class="plan-price-num">¥6,800</span>
+          <span class="plan-price-unit">/ 月(税抜)</span>
+        </div>
+        <div class="plan-unit-note">1件あたり 1,700円(満枠利用時)</div>
+        <div class="plan-features">
+          <div class="plan-feature strong">月4回まで面談実施</div>
+          <div class="plan-feature">超過時:1回 ¥2,800(月2回まで)</div>
+          <div class="plan-feature">1職種テンプレ選択可</div>
+          <div class="plan-feature">基本7軸スコア・評価レポート</div>
+          <div class="plan-feature">メール通知(結果を即お知らせ)</div>
+          <div class="plan-feature">録画 1ヶ月保管</div>
+        </div>
+        <a href="#cta" class="plan-cta outline">Lightを試す</a>
+      </div>
+
+      <div class="pricing-card featured">
+        <div class="pricing-badge">RECOMMENDED</div>
+        <div class="plan-name">STANDARD</div>
+        <div class="plan-tagline">SNS運用代行・制作会社の主力プラン</div>
+        <div class="plan-price">
+          <span class="plan-price-num">¥19,800</span>
+          <span class="plan-price-unit">/ 月(税抜)</span>
+        </div>
+        <div class="plan-unit-note">1件あたり 1,320円(満枠利用時)</div>
+        <div class="plan-features">
+          <div class="plan-feature strong">月15回まで面談実施</div>
+          <div class="plan-feature strong">全職種テンプレ使い放題</div>
+          <div class="plan-feature">カスタム質問の追加可能</div>
+          <div class="plan-feature">対話ログの自動要約</div>
+          <div class="plan-feature">リテラシー検証・矛盾検出</div>
+          <div class="plan-feature">録画 3ヶ月保管・PDF出力</div>
+        </div>
+        <a href="#cta" class="plan-cta primary">Standardを試す</a>
+      </div>
+
+      <div class="pricing-card">
+        <div class="plan-name">PRO</div>
+        <div class="plan-tagline">採用が活発・複数拠点の中堅向け</div>
+        <div class="plan-price">
+          <span class="plan-price-num">¥39,800</span>
+          <span class="plan-price-unit">/ 月(税抜)</span>
+        </div>
+        <div class="plan-unit-note">1件あたり 995円(満枠利用時)</div>
+        <div class="plan-features">
+          <div class="plan-feature strong">月40回まで面談実施</div>
+          <div class="plan-feature">Standardの全機能</div>
+          <div class="plan-feature">採用ダッシュボード <span class="soon">※順次リリース予定</span></div>
+          <div class="plan-feature">候補者の横並び比較 <span class="soon">※順次リリース予定</span></div>
+          <div class="plan-feature">CSV一括招待</div>
+          <div class="plan-feature">録画 12ヶ月保管・優先サポート</div>
+        </div>
+        <a href="#cta" class="plan-cta outline">Proを試す</a>
+      </div>
+    </div>
+
+    <div class="enterprise-strip">
+      <div class="enterprise-info">
+        <div class="enterprise-name">ENTERPRISE</div>
+        <div class="enterprise-desc">月40回を超える採用、または人材紹介業・派遣業・採用代行(RPO)業でのご利用に。回数上限なし・カスタム対応・専任サポートを個別見積もりでご提供します。</div>
+      </div>
+      <a href="mailto:info@miate.co.jp" class="enterprise-cta">お問い合わせ</a>
+    </div>
+
+    <div class="pricing-note">
+      <strong>初回 7日間 無料トライアル</strong>(全プラン共通・クレジットカード登録不要)<br>
+      ※ Standardは月15回、Proは月40回が上限です。上限到達時は上位プランへの切り替えをご案内します。<br>
+      ※ 人材紹介業・人材派遣業・採用代行(RPO)業でのご利用は、Enterpriseプランへのお申し込みが必要です。
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section>
+  <div class="container">
+    <div class="section-header centered">
+      <div class="section-eyebrow">COMPARISON</div>
+      <h2 class="section-title">他のAI面接ツールとの違い。</h2>
+      <p class="section-subtitle">大手向けAI面接ツールは月額10万円〜が一般的。中小・業務委託採用のための選択肢は、これまで存在しませんでした。</p>
+    </div>
+    <div class="compare-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th class="highlight">サキメン</th>
+            <th>大手向けAI面接ツール</th>
+            <th>自社で面接</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>月額</td><td class="us">6,800円〜</td><td>月10〜30万円(推定)</td><td class="muted">面接官の人件費</td></tr>
+          <tr><td>最低契約</td><td class="us">なし(月単位)</td><td>年契約・最低数十回</td><td class="muted">—</td></tr>
+          <tr><td>料金の透明性</td><td class="us">公開・即決可能</td><td>非公開・要問合せ</td><td class="muted">—</td></tr>
+          <tr><td>導入スピード</td><td class="us">即日開始</td><td>商談→デモ→契約(2〜4週間)</td><td class="muted">—</td></tr>
+          <tr><td>業務委託特化</td><td class="us">専用ルーブリック</td><td>汎用設計</td><td class="muted">担当者次第</td></tr>
+          <tr><td>リテラシー検証</td><td class="us">自動判定</td><td>非対応</td><td class="muted">担当者次第</td></tr>
+          <tr><td>矛盾フラグ検出</td><td class="us">自動検出</td><td>非対応</td><td class="muted">担当者次第</td></tr>
+          <tr><td>候補者の受験タイミング</td><td class="us">24時間いつでも</td><td>調整必要</td><td class="muted">調整必要</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- FLOW -->
+<section id="flow">
+  <div class="container">
+    <div class="section-header centered">
+      <span class="flow-badge-top">最短当日でレポートが届く</span>
+      <h2 class="section-title">ご利用は、3ステップ。</h2>
+      <p class="section-subtitle">アカウント発行から、初回の評価レポートが届くまで、最短当日で完了します。</p>
+    </div>
+    <div class="flow-cards">
+      <div class="flow-card">
+        <div class="flow-num">1</div>
+        <div class="flow-icon">
+          <svg viewBox="0 0 48 48" fill="none" stroke="#921B65" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="13" width="30" height="22" rx="3"/><path d="M9 16l15 11 15-11"/></svg>
+        </div>
+        <h3 class="flow-title">招待URLを発行</h3>
+        <p class="flow-text">候補者を管理画面に登録し、職種テンプレを選択。専用URLが生成され、メールで自動送付できます。1人1回・48時間で自動失効します。</p>
+      </div>
+      <div class="flow-card">
+        <div class="flow-num">2</div>
+        <div class="flow-icon">
+          <svg viewBox="0 0 48 48" fill="none" stroke="#921B65" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M10 12h20a4 4 0 0 1 4 4v9a4 4 0 0 1-4 4H18l-8 6V16a4 4 0 0 1 4-4z"/><circle cx="17" cy="20.5" r="1.4" fill="#921B65" stroke="none"/><circle cx="23" cy="20.5" r="1.4" fill="#921B65" stroke="none"/><circle cx="29" cy="20.5" r="1.4" fill="#921B65" stroke="none"/></svg>
+        </div>
+        <h3 class="flow-title">候補者がAIと面談</h3>
+        <p class="flow-text">候補者は自分の好きなタイミングでアクセス。AIと自然な対話形式で7問＋深掘り。録画・音声認識・自然な日本語音声で実施します。</p>
+      </div>
+      <div class="flow-card">
+        <div class="flow-num">3</div>
+        <div class="flow-icon">
+          <svg viewBox="0 0 48 48" fill="none" stroke="#921B65" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="12" y="9" width="24" height="30" rx="3"/><path d="M18 18h12"/><path d="M18 24h12"/><path d="M18 30h7"/></svg>
+        </div>
+        <h3 class="flow-title">評価レポートを確認</h3>
+        <p class="flow-text">面談終了から数分で、対話ログ・録画・7軸スコア・推奨判定が管理画面に表示。あとは最終判断して、二次面接へ案内するだけです。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section-soft" id="faq">
+  <div class="container-narrow">
+    <div class="section-header centered">
+      <div class="section-eyebrow">FAQ</div>
+      <h2 class="section-title">よくあるご質問。</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-question"><span><span class="faq-q-mark">Q.</span>候補者は何を準備すればよいですか?</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">PCまたはスマートフォンとWebカメラ・マイクがあれば、ブラウザから受験可能です。アプリのインストールは不要です。所要時間は15〜20分です。</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question"><span><span class="faq-q-mark">Q.</span>招待URLはどのくらい有効ですか?</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">セキュリティのため、1人1回・48時間で自動失効します。期限切れの場合、管理画面から再発行可能です。</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question"><span><span class="faq-q-mark">Q.</span>どのくらいで評価レポートが届きますか?</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">面談終了から数分以内に、管理画面で対話ログ・録画・7軸スコア・推奨判定(リテラシー検証・矛盾検出結果含む)をご確認いただけます。</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question"><span><span class="faq-q-mark">Q.</span>月の面談回数を超えそうな場合は?</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">各プランには月の面談回数の上限があります。Lightプランは超過分を追加課金(1回 ¥2,800・月2回まで)でご利用いただけます。Standard(月15回)・Pro(月40回)は上限に達した場合、上位プランへの切り替えをご案内します。Proの上限を超える規模のご利用は、エンタープライズプランで対応します。</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question"><span><span class="faq-q-mark">Q.</span>独自の質問は追加できますか?</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">Standard・Proプランで、職種テンプレに加えて独自の質問を追加できます。自社の評価ポイントに合わせたカスタマイズが可能です。</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question"><span><span class="faq-q-mark">Q.</span>候補者の個人情報はどう管理されますか?</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">録画データは暗号化して保管(Light 1ヶ月・Standard以上 3ヶ月)、文字起こしと評価レポートは2年保管後に削除します。適切な運用管理を行っております。</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question"><span><span class="faq-q-mark">Q.</span>人材紹介業や派遣会社でも使えますか?</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">人材紹介業・派遣業・採用代行(RPO)業でのご利用は、別途エンタープライズプランへのお申し込みが必要です。お問い合わせよりご相談ください。</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question"><span><span class="faq-q-mark">Q.</span>無料トライアルは本当に無料ですか?</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">7日間、全プランの機能を無料でお試しいただけます。まずは一度、実際の使い心地をお試しください。</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta" id="cta">
+  <div class="final-cta-inner">
+    <div class="final-cta-eyebrow">START NOW</div>
+    <h2 class="final-cta-title">
+      「迷う面談」にかける時間をゼロにして、<br>
+      <span class="accent">本当に採用したい人材に出会いませんか。</span>
+    </h2>
+    <p class="final-cta-text">
+      7日間 無料トライアル。即日開始可能。<br>
+      合わなければ、何もしなくても自動で終了します。
+    </p>
+    <div class="final-cta-buttons">
+      <a href="https://interview-ai-puce-tau.vercel.app/" target="_blank" class="btn-primary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
+        無料で試す
+      </a>
+      <a href="mailto:info@miate.co.jp" class="btn-secondary">資料請求・お問い合わせ</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo">
+          <span class="logo-main">サキメン</span>
+          <span class="logo-credit">Produced by <strong>Miate</strong></span>
+        </div>
+        <p>サキメンは、業務委託採用に特化した一次面談AIサービスです。SNS運用代行・制作会社・スタートアップの採用工数を、ゼロに近づけます。合同会社Miateが運用代行業界の経験を活かしてお届けします。</p>
+      </div>
+      <div>
+        <div class="footer-contact-title">CONTACT</div>
+        <div class="footer-contact-detail">
+          合同会社 Miate<br>
+          代表 高橋 健斗<br>
+          <a href="mailto:info@miate.co.jp">info@miate.co.jp</a><br>
+          <a href="https://miate.co.jp" target="_blank">miate.co.jp</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Miate LLC. All rights reserved.</p>
+      <p>利用規約 / プライバシーポリシー / 特定商取引法に基づく表記</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.faq-question').forEach(btn => {
+  btn.addEventListener('click', () => {
+    btn.closest('.faq-item').classList.toggle('open');
+  });
+});
+</script>
+
+</body>
+</html>

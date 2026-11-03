@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAKIMEN｜LP改修デザインモック（ヒーロー〜機能）</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Inter:wght@600;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#191C4A;
+  --text:#3B3F5C;
+  --muted:#7A7E99;
+  --violet:#6C3BEA;
+  --magenta:#D62E82;
+  --grad:linear-gradient(120deg,#D62E82 0%,#8B3BE8 55%,#5B3FE0 100%);
+  --tint:#F6F3FF;
+  --line:#E8E5F5;
+  --shadow-1:0 1px 2px rgba(25,28,74,.06),0 8px 24px rgba(25,28,74,.08);
+  --shadow-2:0 2px 4px rgba(25,28,74,.05),0 18px 40px rgba(25,28,74,.12),0 40px 80px rgba(108,59,234,.10);
+}
+html{scroll-behavior:smooth}
+body{font-family:"Noto Sans JP","Hiragino Sans","Hiragino Kaku Gothic ProN",sans-serif;color:var(--text);background:#fff;line-height:1.85;letter-spacing:.02em;-webkit-font-smoothing:antialiased;text-wrap:pretty;padding-bottom:84px}
+h1,h2,h3,h4{color:var(--navy);text-wrap:balance}
+.num{font-family:Inter,"Noto Sans JP",sans-serif}
+.wrap{max-width:1180px;margin:0 auto;padding:0 32px}
+a{text-decoration:none;color:inherit}
+
+/* ===== BUTTONS（CTAは1色＝グラデのみに統一） ===== */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border-radius:999px;font-weight:700;font-size:15px;letter-spacing:.04em;transition:transform .2s,box-shadow .2s;white-space:nowrap}
+.btn-main{background:var(--grad);color:#fff;padding:18px 34px;box-shadow:0 10px 24px rgba(139,59,232,.32),inset 0 1px 0 rgba(255,255,255,.25)}
+.btn-main:hover{transform:translateY(-2px);box-shadow:0 16px 32px rgba(139,59,232,.4)}
+.btn-ghost{background:#fff;color:var(--navy);padding:17px 30px;border:1.5px solid var(--line);box-shadow:var(--shadow-1)}
+.btn-ghost:hover{border-color:var(--violet);color:var(--violet)}
+.btn-wrap{display:inline-flex;flex-direction:column;align-items:center;gap:6px}
+.micro{font-size:12px;font-weight:700;color:var(--violet);letter-spacing:.06em}
+.micro::before{content:"＼";margin-right:4px;opacity:.6}
+.micro::after{content:"／";margin-left:4px;opacity:.6}
+
+/* ===== HEADER ===== */
+header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(232,229,245,.7)}
+.hd{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{display:flex;align-items:center;gap:10px;font-family:Inter,sans-serif;font-weight:900;font-size:22px;color:var(--navy);letter-spacing:.04em}
+.logo-mark{width:30px;height:30px;border-radius:9px;background:var(--grad);position:relative;box-shadow:0 6px 14px rgba(139,59,232,.35)}
+.logo-mark::after{content:"";position:absolute;inset:8px 9px;border-radius:4px;background:#fff;transform:skewX(-14deg)}
+nav{display:flex;gap:30px;font-size:14px;font-weight:500}
+nav a:hover{color:var(--violet)}
+.hd .btn-main{padding:11px 22px;font-size:13px}
+
+/* ===== HERO ===== */
+.hero{position:relative;overflow:hidden;padding:72px 0 120px;background:
+  radial-gradient(900px 500px at 85% 10%,rgba(139,59,232,.14),transparent 60%),
+  radial-gradient(700px 500px at 0% 100%,rgba(214,46,130,.10),transparent 60%),
+  linear-gradient(180deg,#fff 0%,#FAF8FF 100%)}
+.hero-grid{display:grid;grid-template-columns:1.12fr 1fr;gap:40px;align-items:center}
+.pill{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 16px 7px 8px;font-size:13px;font-weight:700;color:var(--navy);box-shadow:var(--shadow-1)}
+.pill b{background:var(--grad);color:#fff;border-radius:999px;padding:2px 10px;font-size:11px;letter-spacing:.08em}
+.hero h1{font-size:clamp(40px,4.8vw,66px);font-weight:900;line-height:1.24;letter-spacing:.02em;margin:0 0 28px}
+.hero h1 .ln{display:inline-block;white-space:nowrap}
+.hero-sub{font-size:15.5px;font-weight:700;line-height:1.95;color:var(--violet);margin-bottom:16px;letter-spacing:.04em}
+.hero-sub .ln{display:inline-block;white-space:nowrap}
+.hero .btn-main.lg{padding:20px 44px;font-size:16px}
+.g{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .lead{font-size:16px;line-height:2;max-width:520px;margin-bottom:28px}
+.metrics{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:34px}
+.metric{background:#fff;border-radius:14px;padding:12px 16px;box-shadow:var(--shadow-1);border:1px solid var(--line);min-width:132px}
+.metric .v{font-family:Inter,sans-serif;font-weight:900;font-size:26px;line-height:1.1;color:var(--navy)}
+.metric .v small{font-size:13px;font-family:"Noto Sans JP",sans-serif;font-weight:700;margin-left:2px}
+.metric .v.g small{color:var(--violet);-webkit-text-fill-color:var(--violet)}
+.metric .l{font-size:11.5px;color:var(--muted);font-weight:700;margin-top:2px}
+.cta-row{display:flex;gap:14px;align-items:flex-end;flex-wrap:wrap}
+.hero .note{font-size:11px;color:var(--muted);margin-top:14px}
+
+/* --- 3D ステージ --- */
+.stage{position:relative;height:540px;perspective:1800px}
+.blob{position:absolute;border-radius:50%}
+.blob.b1{width:440px;height:440px;right:-40px;top:10px;background:radial-gradient(circle at 30% 30%,#EDE4FF,#DCCBFF 55%,transparent 70%)}
+.blob.b2{width:240px;height:240px;left:0;bottom:10px;background:radial-gradient(circle at 40% 40%,#FFE0EF,transparent 70%)}
+.laptop{position:absolute;left:20px;top:70px;width:540px;transform:rotateY(-14deg) rotateX(6deg);transform-style:preserve-3d}
+.screen{background:#1A1C38;border-radius:16px 16px 6px 6px;padding:12px;box-shadow:var(--shadow-2)}
+.app{background:#fff;border-radius:8px;overflow:hidden;height:310px;display:grid;grid-template-rows:34px 1fr}
+.app-bar{display:flex;align-items:center;gap:6px;padding:0 12px;background:#F4F2FB;border-bottom:1px solid var(--line);font-size:10.5px;font-weight:700;color:var(--muted)}
+.app-bar i{width:8px;height:8px;border-radius:50%;background:#D9D5EA;display:inline-block}
+.app-bar span{margin-left:8px}
+.app-body{display:grid;grid-template-columns:1.15fr 1fr}
+/* 画像が読めない環境でもシルエットが出るフォールバック */
+.avatar{position:relative;overflow:hidden;background:
+  radial-gradient(circle at 50% 36%,#F2D4C4 0 17%,transparent 17.5%),
+  radial-gradient(ellipse at 50% 30%,#4A3530 0 25%,transparent 25.5%),
+  radial-gradient(ellipse at 50% 100%,#FFFFFF 0 38%,transparent 38.5%),
+  linear-gradient(135deg,#F8E9EE,#EADCF7)}
+.avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 18%}
+.vid .tag{position:absolute;left:10px;top:10px;background:rgba(25,28,74,.78);color:#fff;font-size:10px;font-weight:700;padding:3px 9px;border-radius:999px;z-index:2}
+.vid .rec{position:absolute;right:10px;top:10px;display:flex;align-items:center;gap:5px;background:#fff;font-size:9.5px;font-weight:700;color:var(--magenta);padding:3px 8px;border-radius:999px;z-index:2}
+.vid .rec::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--magenta)}
+.qa{padding:12px;display:flex;flex-direction:column;gap:9px;background:#FBFAFE}
+.cam{position:relative;height:112px;border-radius:10px;overflow:hidden;background:linear-gradient(135deg,#EDE6F7,#F6EEF4);flex-shrink:0}
+.cam img{width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block}
+.cam span{position:absolute;left:8px;bottom:8px;background:rgba(25,28,74,.75);color:#fff;font-size:9.5px;font-weight:700;border-radius:999px;padding:2px 8px}
+.prog{font-size:10px;font-weight:700;color:var(--violet)}
+.bar{height:5px;background:#EEEAF8;border-radius:9px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--grad);border-radius:9px}
+.bubble{background:var(--tint);border-radius:12px 12px 12px 3px;padding:10px 12px;font-size:11.5px;line-height:1.7;color:var(--navy);font-weight:500}
+.wave{display:flex;align-items:center;gap:3px;height:26px;margin-top:auto}
+.wave i{width:3px;border-radius:3px;background:var(--grad);animation:w 1.2s ease-in-out infinite}
+@keyframes w{0%,100%{transform:scaleY(.4)}50%{transform:scaleY(1)}}
+.base{height:16px;margin:0 -28px;background:linear-gradient(180deg,#D8D6E6,#B9B6CC);border-radius:0 0 18px 18px;box-shadow:0 20px 30px rgba(25,28,74,.18)}
+
+.float{position:absolute;background:#fff;border-radius:16px;box-shadow:var(--shadow-2);border:1px solid rgba(232,229,245,.8);animation:fl 6s ease-in-out infinite;z-index:3}
+@keyframes fl{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.score{right:-28px;bottom:-34px;width:262px;padding:16px 18px;animation-delay:-2s}
+.score h4{font-size:12px;display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}
+.badge{background:var(--grad);color:#fff;font-size:10.5px;padding:2px 10px;border-radius:999px;letter-spacing:.08em;white-space:nowrap}
+.srow{display:grid;grid-template-columns:72px 1fr 26px;align-items:center;gap:8px;font-size:10.5px;margin-bottom:7px;color:var(--muted);font-weight:700}
+.srow b{font-family:Inter,sans-serif;color:var(--navy);text-align:right}
+.concern{right:0;top:0;padding:12px 16px;display:flex;gap:10px;align-items:center;font-size:12px;font-weight:700;color:var(--navy);animation-delay:-4s}
+.concern .ic{width:30px;height:30px;border-radius:9px;background:#FFF1F7;color:var(--magenta);display:grid;place-items:center;font-weight:900}
+.concern small{display:block;font-size:10.5px;color:var(--muted);font-weight:500}
+.notify{left:0;bottom:24px;width:256px;padding:12px 14px;display:flex;gap:10px;align-items:center;animation-delay:-1s}
+.notify .ic{width:34px;height:34px;border-radius:10px;background:var(--grad);display:grid;place-items:center;color:#fff;font-weight:900;font-size:13px;flex-shrink:0}
+.notify b{display:block;font-size:12px;color:var(--navy)}
+.notify span{font-size:10.5px;color:var(--muted)}
+
+/* ===== PROBLEM（圧縮） ===== */
+.problem{background:#F4F3F8;padding:96px 0 0;position:relative}
+.eyebrow{font-family:Inter,sans-serif;font-weight:800;font-size:12px;letter-spacing:.28em;color:var(--violet);text-align:center;margin-bottom:12px}
+.h2{font-size:clamp(26px,3.2vw,38px);font-weight:900;text-align:center;line-height:1.45;margin-bottom:48px}
+.pains{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.pain{background:#fff;border-radius:18px;padding:28px 26px;display:flex;gap:16px;align-items:flex-start;box-shadow:var(--shadow-1)}
+.pain .ic{flex-shrink:0;width:46px;height:46px;border-radius:14px;background:#EDEAF6;display:grid;place-items:center}
+.pain .ic svg{width:24px;height:24px}
+.pain h3{font-size:16.5px;line-height:1.55;margin-bottom:6px}
+.pain p{font-size:13px;color:var(--muted);line-height:1.8}
+.funnel{height:120px;margin-top:56px;background:linear-gradient(180deg,rgba(108,59,234,.18),rgba(108,59,234,0));clip-path:polygon(0 0,100% 0,50% 100%)}
+.solve{text-align:center;margin-top:-30px;padding-bottom:20px;position:relative}
+.solve p{font-size:14px;font-weight:700;color:var(--muted);margin-bottom:6px}
+.solve h2{font-size:clamp(28px,3.6vw,44px);font-weight:900;line-height:1.4}
+
+/* ===== FEATURES（ジグザグ） ===== */
+.features{padding:110px 0 40px;background:linear-gradient(180deg,#F4F3F8 0%,#fff 14%)}
+.feat{display:grid;grid-template-columns:1fr 1.05fr;gap:72px;align-items:center;margin-bottom:120px}
+.feat.rev .ftxt{order:2}
+.fno{font-family:Inter,sans-serif;font-weight:900;font-size:72px;line-height:1}
+.ftag{display:inline-block;font-size:12px;font-weight:700;color:var(--violet);background:var(--tint);border-radius:999px;padding:4px 14px;margin:14px 0}
+.ftxt h3{font-size:clamp(24px,2.6vw,32px);font-weight:900;line-height:1.45;margin-bottom:16px}
+.ftxt p{font-size:15px;line-height:2;margin-bottom:22px}
+.checks{display:flex;flex-wrap:wrap;gap:10px}
+.checks span{font-size:13px;font-weight:700;color:var(--navy);background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 14px 8px 12px;box-shadow:var(--shadow-1)}
+.checks span::before{content:"✓";color:var(--violet);font-weight:900;margin-right:6px}
+.fvis{position:relative;height:440px}
+.panel{position:absolute;border-radius:28px;background:linear-gradient(145deg,#F1EBFF,#FBF7FF);inset:20px 0 20px 40px;box-shadow:inset 0 0 0 1px rgba(108,59,234,.08)}
+.feat.rev .panel{inset:20px 40px 20px 0}
+
+/* F1: スマホ */
+.phone{position:absolute;left:100px;top:6px;width:220px;height:428px;background:#1A1C38;border-radius:34px;padding:10px;box-shadow:var(--shadow-2);transform:rotate(-4deg);z-index:2}
+.phone .in{background:#fff;border-radius:26px;height:100%;overflow:hidden;display:flex;flex-direction:column}
+.phone .top{height:150px;flex-shrink:0}
+.phone .chat{padding:12px;display:flex;flex-direction:column;gap:8px;font-size:10.5px;line-height:1.6}
+.phone .ai{background:var(--tint);border-radius:10px 10px 10px 3px;padding:8px 10px;color:var(--navy)}
+.phone .me{align-self:flex-end;background:var(--grad);color:#fff;border-radius:10px 10px 3px 10px;padding:8px 10px;max-width:85%}
+.phone .mic{margin:auto auto 14px;width:44px;height:44px;border-radius:50%;background:var(--grad);box-shadow:0 0 0 8px rgba(139,59,232,.12);flex-shrink:0}
+.cal{right:10px;top:50px;width:200px;padding:16px;animation-delay:-3s}
+.cal .t{font-size:11px;font-weight:700;color:var(--muted)}
+.cal .v{font-size:20px;font-weight:900;color:var(--navy);margin:2px 0 8px}
+.cal .grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.cal .grid i{height:14px;border-radius:4px;background:#EEEAF8}
+.cal .grid i.on{background:var(--grad)}
+.h24{right:40px;bottom:56px;padding:14px 18px;animation-delay:-5s}
+.h24 .v{font-family:Inter,sans-serif;font-weight:900;font-size:28px;line-height:1}
+.h24 small{font-size:11px;color:var(--muted);font-weight:700}
+
+/* F2: 質問セット */
+.qset{position:absolute;left:30px;top:56px;width:400px;padding:20px;border-radius:20px;background:#fff;box-shadow:var(--shadow-2);z-index:2}
+.qset.back{left:80px;top:18px;width:360px;height:120px;opacity:.6;z-index:1}
+.tabs{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.tabs span{font-size:11px;font-weight:700;padding:6px 12px;border-radius:999px;background:#F2F0F8;color:var(--muted)}
+.tabs span.on{background:var(--navy);color:#fff}
+.q{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px dashed var(--line);font-size:12px;color:var(--navy);font-weight:500;line-height:1.6}
+.q:last-child{border-bottom:none}
+.q b{font-family:Inter,sans-serif;font-size:11px;color:var(--violet);background:var(--tint);border-radius:6px;padding:1px 7px;flex-shrink:0}
+.axes{right:0;bottom:10px;width:232px;padding:16px;animation-delay:-2s}
+.axes .t{font-size:11.5px;font-weight:900;color:var(--navy);margin-bottom:10px}
+.axes .chips{display:flex;flex-wrap:wrap;gap:6px}
+.axes .chips span{font-size:10.5px;font-weight:700;border:1px solid var(--line);border-radius:8px;padding:4px 8px;color:var(--text)}
+
+/* F3: レポート重ね */
+.rep{position:absolute;width:330px;padding:20px;border-radius:20px;background:#fff;box-shadow:var(--shadow-2)}
+.rep.r2{left:170px;top:16px;transform:rotate(5deg);z-index:1}
+.rep.r1{left:70px;top:84px;z-index:2}
+.rep .hd2{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.rep .av{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#E9E2FF,#FBE3F0);flex-shrink:0}
+.rep .nm{font-size:13px;font-weight:900;color:var(--navy)}
+.rep .jb{font-size:10.5px;color:var(--muted)}
+.rep .badge{margin-left:auto}
+.rep .badge.gray{background:#EEEAF8;color:var(--muted)}
+.rep .sec{font-size:10.5px;font-weight:900;color:var(--violet);margin:12px 0 4px;letter-spacing:.06em}
+.rep .li{font-size:11.5px;line-height:1.7;color:var(--navy)}
+.rep .li.c{color:#9A3D6B}
+
+/* ===== EFFECT（濃色帯） ===== */
+.effect{position:relative;background:#14163A;color:#fff;padding:96px 0;overflow:hidden}
+.effect::before{content:"";position:absolute;width:700px;height:700px;right:-160px;top:-260px;background:radial-gradient(circle,rgba(139,59,232,.45),transparent 60%)}
+.effect::after{content:"";position:absolute;width:520px;height:520px;left:-160px;bottom:-280px;background:radial-gradient(circle,rgba(214,46,130,.35),transparent 60%)}
+.eff-grid{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.eff-l .eyebrow{text-align:left;color:#C9B8FF}
+.eff-l h2{color:#fff;font-size:clamp(24px,2.6vw,32px);font-weight:900;line-height:1.5}
+.big{display:flex;align-items:baseline;gap:8px;margin:10px 0 6px}
+.big .n{font-family:Inter,sans-serif;font-weight:900;font-size:clamp(96px,11vw,150px);line-height:1;background:linear-gradient(120deg,#FF7EB8,#B490FF);-webkit-background-clip:text;background-clip:text;color:transparent}
+.big .u{font-family:Inter,sans-serif;font-weight:900;font-size:48px;color:#fff}
+.big .k{font-size:26px;font-weight:900}
+.eff-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:22px;padding:28px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.ebar{margin-bottom:20px}
+.ebar .t{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:13px;font-weight:700;margin-bottom:8px;color:rgba(255,255,255,.85)}
+.ebar .t b{font-family:Inter,sans-serif;font-size:20px;color:#fff;white-space:nowrap}
+.ebar .tr{height:16px;border-radius:99px;background:rgba(255,255,255,.08);overflow:hidden}
+.ebar .tr i{display:block;height:100%;border-radius:99px}
+.ebar.before .tr i{width:100%;background:rgba(255,255,255,.28)}
+.ebar.after .tr i{width:20%;background:linear-gradient(90deg,#FF7EB8,#B490FF)}
+.eff-note{font-size:11px;color:rgba(255,255,255,.55);line-height:1.8;margin-top:6px}
+
+/* ===== MID CTA ===== */
+.midcta{padding:84px 0 40px;text-align:center;background:linear-gradient(180deg,#fff,#F7F4FF)}
+.midcta h2{font-size:clamp(22px,2.6vw,30px);font-weight:900;margin-bottom:10px}
+.midcta p{font-size:14px;color:var(--muted);margin-bottom:28px}
+.mock-note{text-align:center;font-size:11.5px;color:var(--muted);padding:40px 0 0}
+
+/* ===== 固定CTAバー ===== */
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:60;background:rgba(255,255,255,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--line);box-shadow:0 -10px 30px rgba(25,28,74,.08)}
+.sticky .in{display:flex;align-items:center;justify-content:space-between;height:76px;gap:16px}
+.sticky .msg{font-size:14px;font-weight:700;color:var(--navy)}
+.sticky .msg span{color:var(--violet)}
+.sticky .btns{display:flex;gap:10px}
+.sticky .btn-main{padding:13px 26px;font-size:14px}
+.sticky .btn-ghost{padding:12px 22px;font-size:14px}
+
+/* ===== 共通セクション見出し ===== */
+.sec-lead{text-align:center;font-size:14.5px;color:var(--muted);margin:-34px 0 48px}
+
+/* ===== 対応職種（タブ） ===== */
+.jobs{padding:110px 0;background:#fff}
+.job-tabs{display:flex;justify-content:center;gap:12px;margin-bottom:36px;flex-wrap:wrap}
+.job-tab{display:flex;align-items:center;gap:10px;padding:10px 22px 10px 10px;border-radius:999px;background:#fff;border:1.5px solid var(--line);font-weight:700;font-size:15px;color:var(--navy);cursor:pointer;box-shadow:var(--shadow-1);transition:.2s;font-family:inherit}
+.job-tab .ji{width:38px;height:38px;border-radius:50%;background:var(--tint);display:grid;place-items:center}
+.job-tab .ji svg{width:20px;height:20px;stroke:var(--violet)}
+.job-tab:hover{border-color:var(--violet)}
+.job-tab.on{background:var(--navy);color:#fff;border-color:var(--navy);box-shadow:0 14px 28px rgba(25,28,74,.25);transform:translateY(-2px)}
+.job-tab.on .ji{background:rgba(255,255,255,.14)}
+.job-tab.on .ji svg{stroke:#fff}
+.job-panel{display:none;grid-template-columns:1.25fr 1fr;gap:28px;align-items:stretch}
+.job-panel.on{display:grid}
+.jp-card{background:#fff;border-radius:24px;box-shadow:var(--shadow-2);padding:30px 32px;border:1px solid rgba(232,229,245,.8)}
+.jp-label{font-size:12px;font-weight:900;letter-spacing:.12em;color:var(--violet);margin-bottom:6px}
+.jp-card h3{font-size:20px;margin-bottom:14px}
+.jp-axes{background:linear-gradient(150deg,#1B1E52 0%,#2B1F68 100%);color:#fff;border:none;position:relative;overflow:hidden}
+.jp-axes::after{content:"";position:absolute;width:300px;height:300px;right:-120px;top:-120px;background:radial-gradient(circle,rgba(214,46,130,.35),transparent 65%)}
+.jp-axes .jp-label{color:#C9B8FF}
+.jp-axes h3{color:#fff}
+.ax{display:grid;grid-template-columns:110px 1fr;gap:10px;align-items:center;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.1);position:relative;z-index:1}
+.ax:last-child{border-bottom:none}
+.ax b{font-size:13px}
+.ax span{font-size:12px;color:rgba(255,255,255,.65);line-height:1.6}
+/* 対応職種：イラスト＋質問例 */
+.job-panel{grid-template-columns:1fr 1.15fr;gap:28px;align-items:stretch}
+.jp-illust{background:#fff;border-radius:24px;box-shadow:var(--shadow-2);padding:26px 28px 28px;text-align:center;border:1px solid rgba(232,229,245,.8);position:relative}
+.jp-img{aspect-ratio:500/335;border-radius:16px;overflow:hidden;background:linear-gradient(145deg,#F1EBFF,#FBF7FF);margin-bottom:18px}
+.jp-img img{width:100%;height:100%;object-fit:contain;display:block}
+.jp-illust h3{font-size:21px;margin-bottom:6px}
+.jp-illust p{font-size:13.5px;color:var(--muted);line-height:1.85;margin-bottom:14px}
+.jp-chip{display:inline-block;font-size:12px;font-weight:700;color:var(--violet);background:var(--tint);border-radius:999px;padding:4px 14px}
+.jp-card .q{font-size:14px;padding:14px 0}
+.jp-card .q b{font-size:12px;padding:2px 8px}
+.jp-more{font-size:12px;color:var(--muted);margin-top:16px;line-height:1.8}
+.jobs-foot{text-align:center;font-size:12px;color:var(--muted);margin-top:22px}
+
+/* ===== ご利用の流れ ===== */
+.flow{padding:110px 0;background:#fff}
+.flow-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;position:relative}
+.flow-grid::before{content:"";position:absolute;left:10%;right:10%;top:96px;height:3px;background:var(--grad);opacity:.4;border-radius:3px}
+.step{background:#fff;border-radius:22px;box-shadow:var(--shadow-2);overflow:hidden;position:relative;transition:transform .3s}
+.step:hover{transform:translateY(-6px)}
+.step .mock{height:180px;background:linear-gradient(145deg,#F1EBFF,#FBF7FF);display:grid;place-items:center;padding:18px;position:relative}
+.step .mock::after{content:attr(data-n);position:absolute;left:14px;top:12px;font-family:Inter,sans-serif;font-weight:900;font-size:40px;line-height:1;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;opacity:.35}
+.step .body{padding:22px 22px 26px}
+.step .sn{font-family:Inter,sans-serif;font-weight:900;font-size:12px;letter-spacing:.16em;color:var(--violet)}
+.step h3{font-size:17px;margin:6px 0 8px;line-height:1.5}
+.step p{font-size:13px;color:var(--muted);line-height:1.85}
+.step .time{display:inline-block;margin-top:12px;font-size:11px;font-weight:700;background:var(--tint);color:var(--violet);border-radius:999px;padding:3px 10px}
+.mini{width:100%;max-width:190px;background:#fff;border-radius:12px;box-shadow:var(--shadow-2);padding:12px;font-size:10px;color:var(--navy);transform:rotate(-2deg)}
+.mini .mt{font-weight:900;font-size:10.5px;margin-bottom:8px}
+.mini .ln{height:8px;border-radius:4px;background:#EEEAF8;margin-bottom:7px}
+.mini .ln.s{width:62%}
+.mini .bt{height:20px;border-radius:999px;background:var(--grad);margin-top:8px}
+.mini .chip{display:inline-block;font-size:9.5px;font-weight:700;border-radius:999px;padding:2px 9px;background:var(--navy);color:#fff;margin-right:4px}
+.mini .chip.off{background:#EEEAF8;color:var(--muted)}
+.mini .url{display:flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:8px;padding:6px 8px;font-family:Inter,sans-serif;font-size:9.5px;margin-top:10px}
+.mini .url b{margin-left:auto;background:var(--grad);color:#fff;border-radius:5px;padding:1px 6px;font-size:9px}
+.mini .vt{height:58px;border-radius:8px;margin-bottom:6px}
+.mini .bb{background:var(--tint);border-radius:8px 8px 8px 2px;padding:6px 8px;line-height:1.5}
+.mini .srow{grid-template-columns:52px 1fr 20px;font-size:9px;margin-bottom:5px}
+.flow-pill{display:block;width:max-content;margin:0 auto 18px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 16px;font-size:13px;font-weight:700;color:var(--violet);box-shadow:var(--shadow-1)}
+
+/* ===== 料金プラン ===== */
+.pricing{padding:110px 0;background:linear-gradient(180deg,#F7F4FF,#fff)}
+.plans{display:grid;grid-template-columns:repeat(2,minmax(0,420px));justify-content:center;gap:28px;align-items:start}
+.plan{background:#fff;border-radius:26px;padding:38px 34px 34px;box-shadow:var(--shadow-1);border:1px solid var(--line);position:relative}
+.plan.rec{box-shadow:var(--shadow-2);border:2px solid transparent;background:linear-gradient(#fff,#fff) padding-box,var(--grad) border-box;transform:translateY(-12px)}
+.plan .rb{position:absolute;top:-15px;left:50%;transform:translateX(-50%);background:var(--grad);color:#fff;font-size:12px;font-weight:700;padding:5px 18px;border-radius:999px;letter-spacing:.08em;box-shadow:0 8px 18px rgba(139,59,232,.35)}
+.plan .pn{font-family:Inter,sans-serif;font-weight:900;font-size:13px;letter-spacing:.22em;color:var(--violet)}
+.plan h3{font-size:24px;margin:2px 0 2px}
+.plan .for{font-size:12.5px;color:var(--muted)}
+.plan .price{display:flex;align-items:baseline;gap:6px;margin:20px 0 6px}
+.plan .price small{font-size:13px;color:var(--muted);font-weight:700}
+.plan .price b{font-family:Inter,sans-serif;font-weight:900;font-size:50px;color:var(--navy);line-height:1}
+.plan .price span{font-size:14px;color:var(--navy);font-weight:700}
+.plan .unit{font-size:12px;font-weight:700;color:var(--violet);background:var(--tint);display:inline-block;border-radius:8px;padding:3px 10px;margin-bottom:22px}
+.plan ul{list-style:none;border-top:1px solid var(--line);padding-top:10px;margin-bottom:28px}
+.plan li{display:flex;justify-content:space-between;gap:12px;font-size:13.5px;padding:11px 0;border-bottom:1px dashed var(--line)}
+.plan li span{color:var(--muted)}
+.plan li b{color:var(--navy);text-align:right}
+.plan .btn{width:100%}
+.ent{max-width:868px;margin:30px auto 0;display:flex;align-items:center;justify-content:space-between;gap:20px;background:#14163A;color:#fff;border-radius:20px;padding:24px 30px;box-shadow:var(--shadow-2)}
+.ent b{display:block;font-size:15px;margin-bottom:2px}
+.ent p{font-size:13px;color:rgba(255,255,255,.7)}
+.ent .btn{background:#fff;color:var(--navy);padding:13px 26px;font-size:14px}
+.price-note{text-align:center;font-size:12px;color:var(--muted);margin-top:20px;line-height:1.9}
+
+/* ===== 最終CTA ===== */
+.final{position:relative;overflow:hidden;background:#14163A;color:#fff;text-align:center;padding:120px 0 110px}
+.final::before{content:"";position:absolute;width:800px;height:800px;left:50%;top:-420px;transform:translateX(-50%);background:radial-gradient(circle,rgba(139,59,232,.5),transparent 60%)}
+.final::after{content:"";position:absolute;width:500px;height:500px;right:-160px;bottom:-260px;background:radial-gradient(circle,rgba(214,46,130,.35),transparent 60%)}
+.final .wrap{position:relative;z-index:1}
+.final h2{color:#fff;font-size:clamp(32px,4.4vw,52px);font-weight:900;line-height:1.3;margin-bottom:16px}
+.final .g2{background:linear-gradient(120deg,#FF7EB8,#B490FF);-webkit-background-clip:text;background-clip:text;color:transparent}
+.final p{font-size:15px;color:rgba(255,255,255,.75);margin-bottom:34px}
+.final .micro{color:#C9B8FF}
+.btn-ow{border:1.5px solid rgba(255,255,255,.4);color:#fff;padding:17px 30px}
+.btn-ow:hover{background:rgba(255,255,255,.08)}
+.final .row{display:flex;justify-content:center;align-items:flex-end;gap:14px;flex-wrap:wrap}
+
+/* ===== 改行の最適化 ===== */
+.nb{display:inline-block}
+.hero h1,.hero .lead,.hero .note,.pill,.metric .l,.h2,.sec-lead,.ftxt p,.ftxt h3{word-break:auto-phrase}
+/* ===== ヒーロー：評価レポートのラベル ===== */
+.rep-label{display:flex;align-items:center;gap:6px;font-size:10.5px;font-weight:900;color:var(--violet);letter-spacing:.08em;margin-bottom:6px}
+.rep-label svg{width:13px;height:13px}
+/* ===== デモ動画 ===== */
+.demo{padding:110px 0 100px;background:#F4F3F8}
+.demo-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:36px;align-items:center}
+.player{position:relative;perspective:1600px}
+.frame{background:#1A1C38;border-radius:20px;padding:10px;box-shadow:var(--shadow-2);transform:rotateY(7deg) rotateX(3deg)}
+.pbar{height:26px;display:flex;align-items:center;gap:6px;padding:0 8px;color:rgba(255,255,255,.6);font-size:10.5px;font-weight:700}
+.pbar i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.25);display:inline-block}
+.pbar span{margin-left:8px}
+.vscreen{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;display:grid;grid-template-columns:1.2fr 1fr}
+.vscreen .vl{position:relative}
+.vscreen .vr{background:#FBFAFE;padding:18px;display:flex;flex-direction:column;gap:10px}
+.vscreen .vr .mt{font-size:12px;font-weight:900;color:var(--navy)}
+.vscreen::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,22,58,.10),rgba(20,22,58,.62));z-index:1}
+.play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:92px;height:92px;border-radius:50%;background:var(--grad);z-index:3;display:grid;place-items:center;box-shadow:0 0 0 14px rgba(255,255,255,.2),0 20px 40px rgba(139,59,232,.45);cursor:pointer}
+.play::before{content:"";margin-left:7px;border-left:26px solid #fff;border-top:16px solid transparent;border-bottom:16px solid transparent}
+.vcap{position:absolute;left:20px;bottom:26px;z-index:3;color:#fff;font-weight:700;font-size:15px;line-height:1.5}
+.vcap small{display:block;font-size:11.5px;opacity:.8;font-weight:500}
+.vprog{position:absolute;left:20px;right:20px;bottom:12px;height:4px;border-radius:4px;background:rgba(255,255,255,.25);z-index:3;overflow:hidden}
+.vprog i{display:block;width:30%;height:100%;background:var(--grad)}
+.demo .tagf{left:-14px;top:22px;padding:8px 14px;font-size:12px;font-weight:700;color:var(--navy);display:flex;align-items:center;gap:8px;animation-delay:-2s}
+.demo .tagf::before{content:"";width:8px;height:8px;border-radius:50%;background:#FF5C8A;box-shadow:0 0 0 4px rgba(255,92,138,.2)}
+.chapters{display:flex;flex-direction:column;gap:12px}
+.chap{display:flex;gap:16px;align-items:center;background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:16px 18px;box-shadow:var(--shadow-1)}
+.chap.on{border-color:transparent;background:linear-gradient(#fff,#fff) padding-box,var(--grad) border-box;box-shadow:var(--shadow-2)}
+.chap b{font-family:Inter,sans-serif;font-weight:900;font-size:22px;line-height:1;min-width:34px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.chap strong{display:block;font-size:15px;color:var(--navy);line-height:1.5}
+.chap span{font-size:12.5px;color:var(--muted)}
+.demo-cta{margin-top:10px;text-align:center}
+.demo-cta .btn-main{width:100%}
+.demo-note{text-align:center;font-size:12px;color:var(--muted);margin-top:26px}
+/* ===== 料金（確定版） ===== */
+.plan .price .tax{font-size:12px;color:var(--muted);font-weight:700;margin-left:2px}
+.plan .unit.best{background:var(--grad);color:#fff}
+.plan-trial{display:block;text-align:center;font-size:11.5px;color:var(--muted);margin-top:10px}
+.rules{max-width:868px;margin:34px auto 0;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.rule{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;box-shadow:var(--shadow-1)}
+.rule b{display:block;font-size:13px;color:var(--navy);margin-bottom:2px}
+.rule span{font-size:11.5px;color:var(--muted);line-height:1.7}
+
+@media(max-width:960px){
+  nav{display:none}
+  .hero-grid,.feat,.eff-grid{grid-template-columns:1fr}
+  .feat.rev .ftxt{order:0}
+  .stage{height:470px;transform:scale(.8);transform-origin:top left}
+  .pains{grid-template-columns:1fr}
+  .sticky .msg{display:none}
+  .fvis{transform:scale(.85);transform-origin:top left}
+  .job-panel.on{grid-template-columns:1fr}
+  .flow-grid{grid-template-columns:1fr 1fr}
+  .flow-grid::before{display:none}
+  .plans{grid-template-columns:1fr}
+  .plan.rec{transform:none}
+  .ent{flex-direction:column;text-align:center}
+  .demo-grid{grid-template-columns:1fr}
+  .frame{transform:none}
+  .rules{grid-template-columns:1fr 1fr}
+  .hero-sub .ln{display:inline;white-space:normal}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="wrap hd">
+    <div class="logo"><span class="logo-mark"></span>SAKIMEN</div>
+    <nav>
+      <a href="#features">できること</a>
+      <a href="#effect">導入効果</a>
+      <a href="#jobs">対応職種</a>
+      <a href="#demo">デモ動画</a>
+      <a href="#flow">ご利用の流れ</a>
+      <a href="#pricing">料金</a>
+    </nav>
+    <a href="#" class="btn btn-main">無料で試す</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="hero-sub"><span class="ln">AIが一次面談を代行し、強みと懸念点をレポートに。</span><br><span class="ln">業務委託の採用に特化した、AI一次面談ツール。</span></p>
+      <h1><span class="ln">面談は、</span><br><span class="ln g">会いたい人だけ。</span></h1>
+      <div class="metrics">
+        <div class="metric"><div class="v g">80<small>%</small></div><div class="l">面談時間をカット※</div></div>
+        <div class="metric"><div class="v">24<small>時間</small></div><div class="l">候補者はいつでも受験</div></div>
+        <div class="metric"><div class="v">4,800<small>円〜</small></div><div class="l">月額（税込）</div></div>
+      </div>
+      <div class="cta-row">
+        <div class="btn-wrap">
+          <span class="micro">7日間 無料</span>
+          <a href="#" class="btn btn-main lg">まずは無料で7日間試す →</a>
+        </div>
+      </div>
+      <p class="note">※月10名×60分の一次面談を、<span class="nb">導入後は上位4名×30分の二次面談のみに</span><span class="nb">置き換えた場合の当社試算</span></p>
+    </div>
+
+    <div class="stage">
+      <div class="blob b1"></div><div class="blob b2"></div>
+      <div class="laptop">
+        <div class="screen">
+          <div class="app">
+            <div class="app-bar"><i></i><i></i><i></i><span>SAKIMEN ― AI一次面談</span></div>
+            <div class="app-body">
+              <div class="vid avatar">
+                <img src="/illustrations/01_hero/ai-avatar.png" alt="" onerror="this.remove()">
+                <span class="tag">AI面接官</span>
+                <span class="rec">録画中</span>
+              </div>
+              <div class="qa">
+                <div class="cam"><img src="img/candidate.png" alt="候補者のカメラ映像のイメージ" onerror="this.remove()"><span>あなた</span></div>
+                <div class="prog">質問 4 / 8</div>
+                <div class="bar"><i style="width:50%"></i></div>
+                <div class="bubble">これまでで一番成果が出た案件と、その要因を教えてください。</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="base"></div>
+      </div>
+
+      <div class="float score">
+        <div class="rep-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/></svg>AI評価レポート</div>
+        <h4>候補者A｜SNSディレクター <span class="badge">推奨</span></h4>
+        <div class="srow">スキル適合<div class="bar"><i style="width:86%"></i></div><b>8.6</b></div>
+        <div class="srow">対話力<div class="bar"><i style="width:91%"></i></div><b>9.1</b></div>
+        <div class="srow">リテラシー<div class="bar"><i style="width:88%"></i></div><b>8.8</b></div>
+        <div class="srow">稼働条件<div class="bar"><i style="width:64%"></i></div><b>6.4</b></div>
+      </div>
+      <div class="float concern"><span class="ic">!</span><div>懸念点を自動で抽出<small>「平日日中の稼働は要確認」</small></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM（圧縮） -->
+<section class="problem">
+  <div class="wrap">
+    <div class="eyebrow">PROBLEM</div>
+    <h2 class="h2">業務委託の採用で、<br>こんなお悩みありませんか？</h2>
+    <div class="pains">
+      <div class="pain">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#6C3BEA" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+        <div><h3>応募者全員と話す時間がない</h3><p>日程調整・面談・記録で1人60分。本業の合間では限界がある。</p></div>
+      </div>
+      <div class="pain">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#6C3BEA" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h10M4 17h6"/></svg></span>
+        <div><h3>見極めの基準が人によってバラバラ</h3><p>何を聞き、どう評価するかが担当者次第で、比較ができない。</p></div>
+      </div>
+      <div class="pain">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#6C3BEA" stroke-width="2" stroke-linecap="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/></svg></span>
+        <div><h3>書類だけでは人柄が見えない</h3><p>スキルや経歴はわかっても、考え方や仕事への姿勢はわからない。</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="funnel"></div>
+  <div class="solve">
+    <p>そのお悩み、</p>
+    <h2><span class="g">SAKIMEN</span>がまとめて解決します。</h2>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="wrap">
+
+    <div class="feat">
+      <div class="ftxt">
+        <div class="fno g">01</div>
+        <span class="ftag">面談の負担を減らす</span>
+        <h3>AIが24時間、<br>一次面談を代行します。</h3>
+        <p>候補者は届いたURLから、好きな時間にスマホやPCで受験。AIが自然な日本語で質問し、回答に合わせて深掘りします。日程調整も、面談の実施も必要ありません。</p>
+        <div class="checks"><span>日程調整ゼロ</span><span>職種別8問＋深掘り</span><span>録画・文字起こしを自動保存</span></div>
+      </div>
+      <div class="fvis">
+        <div class="panel"></div>
+        <div class="phone"><div class="in">
+          <div class="top avatar"><img src="/illustrations/01_hero/ai-avatar.png" alt="" onerror="this.remove()"></div>
+          <div class="chat">
+            <div class="ai">担当したSNSアカウントで、伸びた要因はどこにあると思いますか？</div>
+            <div class="me">投稿時間とフォーマットを検証し続けたことです。</div>
+            <div class="ai">具体的にどんな検証をしましたか？</div>
+          </div>
+          <div class="mic"></div>
+        </div></div>
+        <div class="float cal"><div class="t">面談の日程調整</div><div class="v">不要</div><div class="grid"><i></i><i class="on"></i><i></i><i class="on"></i><i></i><i></i><i class="on"></i><i class="on"></i><i></i><i></i><i class="on"></i><i></i><i class="on"></i><i></i></div></div>
+        <div class="float h24"><div class="v g">24h</div><small>候補者の都合で受験</small></div>
+      </div>
+    </div>
+
+    <div class="feat rev">
+      <div class="ftxt">
+        <div class="fno g">02</div>
+        <span class="ftag">見極めを基準化する</span>
+        <h3>職種別の質問と、<br>共通の評価軸。</h3>
+        <p>動画編集者・SNSディレクター・Webデザイナーなど、職種ごとに最適化した質問セットを搭載。全員を同じ評価軸で見るので、担当者による判断のブレがなくなります。</p>
+        <div class="checks"><span>職種別テンプレート</span><span>共通の評価軸</span><span>リテラシーも確認</span></div>
+      </div>
+      <div class="fvis">
+        <div class="panel"></div>
+        <div class="qset back"><div class="tabs"><span>動画編集者</span><span class="on">Webデザイナー</span></div></div>
+        <div class="qset">
+          <div class="tabs"><span class="on">SNSディレクター</span><span>動画編集者</span><span>Webデザイナー</span></div>
+          <div class="q"><b>Q1</b>これまで運用したアカウントと、担当範囲を教えてください。</div>
+          <div class="q"><b>Q2</b>数字が伸び悩んだとき、最初に何を見直しますか？</div>
+          <div class="q"><b>Q3</b>クライアントと意見が割れたとき、どう進めますか？</div>
+          <div class="q"><b>Q4</b>素材や音源の権利は、どのように確認していますか？</div>
+        </div>
+        <div class="float axes"><div class="t">共通の評価軸</div><div class="chips"><span>スキル適合</span><span>対話力</span><span>リテラシー</span><span>実績の整合性</span><span>稼働条件</span><span>主体性</span></div></div>
+      </div>
+    </div>
+
+    <div class="feat">
+      <div class="ftxt">
+        <div class="fno g">03</div>
+        <span class="ftag">判断材料を可視化する</span>
+        <h3>比較しやすい、<br>評価レポート。</h3>
+        <p>回答内容・強み・懸念点を1枚のレポートに整理。候補者を横並びで見比べて、二次面談に呼ぶ人をすぐに決められます。</p>
+        <div class="checks"><span>強み・懸念点を自動抽出</span><span>推奨度を判定</span><span>録画もすぐ確認</span></div>
+      </div>
+      <div class="fvis">
+        <div class="panel"></div>
+        <div class="rep r2">
+          <div class="hd2"><span class="av"></span><div><div class="nm">候補者B</div><div class="jb">動画編集者</div></div><span class="badge gray">保留</span></div>
+          <div class="sec">強み</div><div class="li">編集スピードと構成力が高い</div>
+          <div class="sec">懸念点</div><div class="li c">音源の権利確認に曖昧さあり</div>
+        </div>
+        <div class="rep r1">
+          <div class="hd2"><span class="av"></span><div><div class="nm">候補者A</div><div class="jb">SNSディレクター</div></div><span class="badge">推奨</span></div>
+          <div class="srow">スキル適合<div class="bar"><i style="width:86%"></i></div><b>8.6</b></div>
+          <div class="srow">対話力<div class="bar"><i style="width:91%"></i></div><b>9.1</b></div>
+          <div class="sec">強み</div>
+          <div class="li">データをもとに改善提案ができる／権利意識が高い</div>
+          <div class="sec">懸念点</div>
+          <div class="li c">平日日中の稼働可否は二次面談で確認を</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EFFECT -->
+<section class="effect" id="effect">
+  <div class="wrap eff-grid">
+    <div class="eff-l">
+      <div class="eyebrow">EFFECT</div>
+      <h2>採用にかかる面談時間を</h2>
+      <div class="big"><span class="n">80</span><span class="u">%</span><span class="k">カット</span></div>
+      <p style="color:rgba(255,255,255,.75);font-size:14.5px">あなたが時間を使うのは、レポートの確認と、本当に会いたい人との面談だけ。</p>
+    </div>
+    <div class="eff-card">
+      <div class="ebar before"><div class="t">これまで（一次面談 10名×60分）<b>10時間</b></div><div class="tr"><i></i></div></div>
+      <div class="ebar after"><div class="t">導入後（二次面談 4名×30分）<b>2時間</b></div><div class="tr"><i></i></div></div>
+      <p class="eff-note">※月10名の応募者全員と60分の一次面談を行うケースと、導入後に上位4名と30分の二次面談のみ行うケースを比較した当社試算です。実際の効果は応募数・運用により異なります。</p>
+    </div>
+  </div>
+</section>
+
+<!-- MID CTA -->
+<section class="midcta">
+  <div class="wrap">
+    <h2>まずは7日間、無料で試してみませんか。</h2>
+    <p>AI一次面談から評価レポートの確認まで、実際の流れをお試しいただけます。</p>
+    <div class="btn-wrap"><span class="micro">7日間 無料</span><a href="#" class="btn btn-main">まずは無料で7日間試す →</a></div>
+  </div>
+</section>
+
+<!-- 対応職種 -->
+<section class="jobs" id="jobs">
+  <div class="wrap">
+    <div class="eyebrow">JOB TYPES</div>
+    <h2 class="h2">対応職種</h2>
+    <p class="sec-lead">採用したい職種に合わせた質問と評価軸で、候補者の見極めをサポートします。</p>
+    <div class="job-tabs"><button class="job-tab on" data-t="jp-video"><span class="ji"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 10l5-3v10l-5-3z"/></svg></span>動画編集者</button><button class="job-tab" data-t="jp-sns"><span class="ji"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg></span>SNSディレクター</button><button class="job-tab" data-t="jp-web"><span class="ji"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M3 9h18M8 21h8M12 17v4"/></svg></span>Webデザイナー</button></div>
+    <div class="job-panel on" id="jp-video">
+      <div class="jp-illust">
+        <div class="jp-img"><img src="img/job-video.png" alt="動画編集者のイラスト" onerror="this.remove()"></div>
+        <h3>動画編集者</h3>
+        <p>制作スキルや進行経験など、職種に合わせた確認を行います。</p>
+        <span class="jp-chip">職種別の質問テンプレート</span>
+      </div>
+      <div class="jp-card">
+        <div class="jp-label">質問例</div>
+        <h3>AIがこんな質問をします</h3>
+        <div class="q"><b>Q1</b>得意な編集ジャンルと、使っているツールを教えてください。</div><div class="q"><b>Q2</b>構成を考えるとき、最初に何から手をつけますか？</div><div class="q"><b>Q3</b>修正依頼が重なったとき、どう対応しますか？</div><div class="q"><b>Q4</b>BGMやフリー素材の利用規約は、どう確認していますか？</div>
+        <p class="jp-more">ほかにも自己紹介・自己PRを含む全8問で、回答に合わせてAIが深掘りします。</p>
+      </div>
+    </div>
+    <div class="job-panel" id="jp-sns">
+      <div class="jp-illust">
+        <div class="jp-img"><img src="img/job-sns.png" alt="SNSディレクターのイラスト" onerror="this.remove()"></div>
+        <h3>SNSディレクター</h3>
+        <p>企画力や運用経験など、業務に必要な視点を整理します。</p>
+        <span class="jp-chip">職種別の質問テンプレート</span>
+      </div>
+      <div class="jp-card">
+        <div class="jp-label">質問例</div>
+        <h3>AIがこんな質問をします</h3>
+        <div class="q"><b>Q1</b>これまで運用したアカウントと、担当範囲を教えてください。</div><div class="q"><b>Q2</b>数字が伸び悩んだとき、最初に何を見直しますか？</div><div class="q"><b>Q3</b>クライアントと意見が割れたとき、どう進めますか？</div><div class="q"><b>Q4</b>素材や音源の権利は、どのように確認していますか？</div>
+        <p class="jp-more">ほかにも自己紹介・自己PRを含む全8問で、回答に合わせてAIが深掘りします。</p>
+      </div>
+    </div>
+    <div class="job-panel" id="jp-web">
+      <div class="jp-illust">
+        <div class="jp-img"><img src="img/job-web.png" alt="Webデザイナーのイラスト" onerror="this.remove()"></div>
+        <h3>Webデザイナー</h3>
+        <p>制作経験やコミュニケーションなど、判断材料を確認します。</p>
+        <span class="jp-chip">職種別の質問テンプレート</span>
+      </div>
+      <div class="jp-card">
+        <div class="jp-label">質問例</div>
+        <h3>AIがこんな質問をします</h3>
+        <div class="q"><b>Q1</b>担当した制作物と、その中での役割を教えてください。</div><div class="q"><b>Q2</b>要件があいまいなとき、どのように確認しますか？</div><div class="q"><b>Q3</b>デザインの意図を、非デザイナーにどう説明しますか？</div><div class="q"><b>Q4</b>フォントや画像素材のライセンスは、どう確認していますか？</div>
+        <p class="jp-more">ほかにも自己紹介・自己PRを含む全8問で、回答に合わせてAIが深掘りします。</p>
+      </div>
+    </div>
+    <p class="jobs-foot">※質問は一例です。対応職種は順次追加予定です。</p>
+  </div>
+</section>
+
+<!-- DEMO -->
+<section class="demo" id="demo">
+  <div class="wrap">
+    <div class="eyebrow">DEMO MOVIE</div>
+    <h2 class="h2">実際の操作を、動画で見る。</h2>
+    <p class="sec-lead">面談URLの発行から、AI一次面談、評価レポートの確認までの流れをご覧いただけます。</p>
+    <div class="demo-grid">
+      <div class="player">
+        <div class="frame">
+          <div class="pbar"><i></i><i></i><i></i><span>SAKIMEN デモ動画</span></div>
+          <div class="vscreen">
+            <div class="vl avatar"><img src="/illustrations/01_hero/ai-avatar.png" alt="" onerror="this.remove()"></div>
+            <div class="vr">
+              <div class="mt">質問 4 / 8</div>
+              <div class="bar"><i style="width:50%"></i></div>
+              <div class="bubble">これまでで一番成果が出た案件と、その要因を教えてください。</div>
+            </div>
+            <span class="play" aria-label="デモ動画を再生"></span>
+            <div class="vcap">AI一次面談の流れ<small>面談URLの発行から評価レポートまで</small></div>
+            <div class="vprog"><i></i></div>
+          </div>
+        </div>
+        <div class="float tagf">実際の操作画面を収録</div>
+      </div>
+      <div class="chapters">
+        <div class="chap on"><b>01</b><div><strong>職種を選んで面談URLを発行</strong><span>候補者に送るだけで準備完了</span></div></div>
+        <div class="chap"><b>02</b><div><strong>候補者がAIと一次面談</strong><span>候補者側の画面と質問の流れ</span></div></div>
+        <div class="chap"><b>03</b><div><strong>評価レポートを確認</strong><span>強み・懸念点・スコアの見方</span></div></div>
+        <div class="chap"><b>04</b><div><strong>二次面談に呼ぶ人を決める</strong><span>候補者を見比べて判断</span></div></div>
+        <div class="demo-cta"><a href="#" class="btn btn-main">まずは無料で7日間試す →</a></div>
+      </div>
+    </div>
+    <p class="demo-note">※動画はイメージです。実際のデモ動画に差し替えます。</p>
+  </div>
+</section>
+
+<!-- ご利用の流れ -->
+<section class="flow" id="flow">
+  <div class="wrap">
+    <div class="eyebrow">HOW IT WORKS</div>
+    <h2 class="h2">ご利用は、かんたん4ステップ。</h2>
+    <span class="flow-pill">アカウント作成から、最短当日で面談を開始できます</span>
+    <div class="flow-grid">
+      <div class="step">
+        <div class="mock" data-n="01"><div class="mini"><div class="mt">アカウント作成</div><div class="ln"></div><div class="ln s"></div><div class="ln"></div><div class="bt"></div></div></div>
+        <div class="body"><div class="sn">STEP 01</div><h3>アカウントを作成</h3><p>企業情報を登録するだけで、すぐに使い始められます。</p><span class="time">約3分</span></div>
+      </div>
+      <div class="step">
+        <div class="mock" data-n="02"><div class="mini"><div class="mt">面談を作成</div><span class="chip">SNSディレクター</span><span class="chip off">動画編集者</span><div class="url">sakimen.jp/i/8f3k…<b>コピー</b></div></div></div>
+        <div class="body"><div class="sn">STEP 02</div><h3>職種を選んでURLを発行</h3><p>採用したい職種を選ぶと、面談URLが発行されます。候補者に送るだけです。</p><span class="time">約1分</span></div>
+      </div>
+      <div class="step">
+        <div class="mock" data-n="03"><div class="mini"><div class="vt avatar"></div><div class="bb">これまでで一番成果が出た案件は？</div></div></div>
+        <div class="body"><div class="sn">STEP 03</div><h3>AIが一次面談を実施</h3><p>候補者は好きな時間にURLから参加。職種に合わせた8つの質問に答えます。</p><span class="time">候補者の都合で24時間</span></div>
+      </div>
+      <div class="step">
+        <div class="mock" data-n="04"><div class="mini"><div class="mt" style="display:flex;justify-content:space-between">候補者A<span class="badge" style="font-size:9px;padding:1px 8px">推奨</span></div><div class="srow">スキル<div class="bar"><i style="width:86%"></i></div><b>8.6</b></div><div class="srow">対話力<div class="bar"><i style="width:91%"></i></div><b>9.1</b></div><div class="srow">稼働<div class="bar"><i style="width:64%"></i></div><b>6.4</b></div></div></div>
+        <div class="body"><div class="sn">STEP 04</div><h3>評価レポートを確認</h3><p>強み・懸念点・スコアを確認して、会いたい人だけを二次面談へ。</p><span class="time">面談終了後すぐ</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 料金プラン -->
+<section class="pricing" id="pricing">
+  <div class="wrap">
+    <div class="eyebrow">PRICING</div>
+    <h2 class="h2">シンプルな2つのプラン。</h2>
+    <p class="sec-lead">どちらのプランも、7日間の無料体験から始められます。</p>
+    <div class="plans">
+      <div class="plan">
+        <div class="pn">LIGHT</div>
+        <h3>ライト</h3>
+        <div class="for">まずは小さく始めたい方に</div>
+        <div class="price"><small>月額</small><b>4,800</b><span>円</span><span class="tax">（税込）</span></div>
+        <div class="unit">1件あたり 1,200円</div>
+        <ul>
+          <li><span>月間面談上限</span><b>4件</b></li>
+          <li><span>管理画面を使える人数</span><b>1人</b></li>
+          <li><span>質問の選び方</span><b>選んだ職種の中から</b></li>
+          <li><span>AI一次面談・評価レポート</span><b>あり</b></li>
+          <li><span>録画・候補者情報の保管</span><b>6か月</b></li>
+        </ul>
+        <a href="#" class="btn btn-ghost">無料で7日間試す</a>
+      </div>
+      <div class="plan rec">
+        <span class="rb">おすすめ</span>
+        <div class="pn">STANDARD</div>
+        <h3>スタンダード</h3>
+        <div class="for">継続的に採用している方に</div>
+        <div class="price"><small>月額</small><b>14,800</b><span>円</span><span class="tax">（税込）</span></div>
+        <div class="unit best">1件あたり 987円</div>
+        <ul>
+          <li><span>月間面談上限</span><b>15件</b></li>
+          <li><span>管理画面を使える人数</span><b>3人（管理者含む）</b></li>
+          <li><span>質問の選び方</span><b>職種をまたいで選べる</b></li>
+          <li><span>AI一次面談・評価レポート</span><b>あり</b></li>
+          <li><span>録画・候補者情報の保管</span><b>6か月</b></li>
+        </ul>
+        <a href="#" class="btn btn-main">無料で7日間試す →</a>
+      </div>
+    </div>
+    <div class="rules">
+      <div class="rule"><b>7日間の無料体験</b><span>どちらのプランも無料で試せます</span></div>
+      <div class="rule"><b>追加料金なし</b><span>上限に達しても請求は増えません</span></div>
+      <div class="rule"><b>いつでも解約OK</b><span>契約期間の終わりまで使えます</span></div>
+      <div class="rule"><b>カード払い</b><span>クレジットカードでお支払い</span></div>
+    </div>
+    <p class="price-note">※1件あたりの金額は、月の上限件数をすべて使った場合の目安です。<br>※上限に達した場合は、上位プランへの変更か翌月までお待ちいただく形になります。使い残した件数は翌月に繰り越されません。</p>
+  </div>
+</section>
+
+<!-- 最終CTA -->
+<section class="final">
+  <div class="wrap">
+    <h2>面談は、<span class="g2">会いたい人だけ。</span></h2>
+    <p>一次面談はAIにまかせて、あなたは採用の判断に集中しましょう。</p>
+    <div class="row">
+      <div class="btn-wrap"><span class="micro">7日間 無料</span><a href="#" class="btn btn-main">まずは無料で7日間試す →</a></div>
+      <a href="#" class="btn btn-ow">お問い合わせ</a>
+    </div>
+    <p class="mock-note" style="color:rgba(255,255,255,.45);margin-bottom:0">※デザインモックのため、画面はすべてイメージです。本番では実際の製品画面に差し替えます。</p>
+  </div>
+</section>
+
+<!-- 固定CTAバー -->
+<div class="sticky">
+  <div class="wrap in">
+    <div class="msg">業務委託採用の一次面談を、<span>AIにおまかせ。</span></div>
+    <div class="btns">
+      <a href="#pricing" class="btn btn-ghost">料金を見る</a>
+      <a href="#" class="btn btn-main">無料で7日間試す →</a>
+    </div>
+  </div>
+</div>
+
+<script>
+document.querySelectorAll('.job-tab').forEach(function(t){
+  t.addEventListener('click',function(){
+    document.querySelectorAll('.job-tab,.job-panel').forEach(function(e){e.classList.remove('on')});
+    t.classList.add('on');
+    document.getElementById(t.dataset.t).classList.add('on');
+  });
+});
+</script>
+</body>
+</html>

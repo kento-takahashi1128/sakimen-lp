@@ -94,7 +94,7 @@ nav a:hover{color:var(--violet)}
   radial-gradient(ellipse at 50% 30%,#4A3530 0 25%,transparent 25.5%),
   radial-gradient(ellipse at 50% 100%,#FFFFFF 0 38%,transparent 38.5%),
   linear-gradient(135deg,#F8E9EE,#EADCF7)}
-.avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 18%}
+.avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 22%}
 .vid .tag{position:absolute;left:10px;top:10px;background:rgba(12,23,88,.78);color:#fff;font-size:10px;font-weight:700;padding:3px 9px;border-radius:999px;z-index:2}
 .vid .rec{position:absolute;right:10px;top:10px;display:flex;align-items:center;gap:5px;background:#fff;font-size:9.5px;font-weight:700;color:var(--magenta);padding:3px 8px;border-radius:999px;z-index:2}
 .vid .rec::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--magenta)}
@@ -282,7 +282,7 @@ nav a:hover{color:var(--violet)}
 .job-panel{grid-template-columns:1fr 1.15fr;gap:28px;align-items:stretch}
 .jp-illust{background:#fff;border-radius:24px;box-shadow:var(--shadow-2);padding:26px 28px 28px;text-align:center;border:1px solid rgba(236,236,241,.8);position:relative}
 .jp-img{aspect-ratio:500/335;border-radius:16px;overflow:hidden;background:#EFEEFA;margin-bottom:18px}
-.jp-img img{width:100%;height:100%;object-fit:contain;display:block}
+.jp-img img{width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block}
 .jp-illust h3{font-size:21px;margin-bottom:6px}
 .jp-illust p{font-size:13.5px;color:var(--muted);line-height:1.85;margin-bottom:14px}
 .jp-chip{display:inline-block;font-size:12px;font-weight:700;color:var(--violet);background:var(--tint);border-radius:999px;padding:4px 14px}
@@ -380,11 +380,12 @@ nav a:hover{color:var(--violet)}
 .pbar{height:26px;display:flex;align-items:center;gap:6px;padding:0 8px;color:rgba(255,255,255,.6);font-size:10.5px;font-weight:700}
 .pbar i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.25);display:inline-block}
 .pbar span{margin-left:8px}
-.vscreen{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;display:grid;grid-template-columns:1.2fr 1fr}
+.vscreen{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:#fff}
+.vposter{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
 .vscreen .vl{position:relative}
 .vscreen .vr{background:#FAFBFD;padding:18px;display:flex;flex-direction:column;gap:10px}
 .vscreen .vr .mt{font-size:12px;font-weight:900;color:var(--navy)}
-.vscreen::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,16,64,.10),rgba(10,16,64,.62));z-index:1}
+.vscreen::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,16,64,.05) 40%,rgba(10,16,64,.68));z-index:1}
 .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:92px;height:92px;border-radius:50%;background:var(--grad);z-index:3;display:grid;place-items:center;box-shadow:0 0 0 14px rgba(255,255,255,.2),0 20px 40px rgba(126,67,179,.45);cursor:pointer}
 .play::before{content:"";margin-left:7px;border-left:26px solid #fff;border-top:16px solid transparent;border-bottom:16px solid transparent}
 .vcap{position:absolute;left:20px;bottom:26px;z-index:3;color:#fff;font-weight:700;font-size:15px;line-height:1.5}
@@ -478,12 +479,12 @@ nav a:hover{color:var(--violet)}
             <div class="app-bar"><i></i><i></i><i></i><span>サキメン ― AI一次面談</span></div>
             <div class="app-body">
               <div class="vid avatar">
-                <img src="https://sakimen.miate.co.jp/illustrations/01_hero/ai-avatar.png" alt="" onerror="this.remove()">
+                <img src="/mockup/img/ai-interviewer.jpg" alt="" onerror="this.remove()">
                 <span class="tag">AI面接官</span>
                 <span class="rec">録画中</span>
               </div>
               <div class="qa">
-                <div class="cam"><img src="/mockup/img/candidate.png" alt="候補者のカメラ映像のイメージ" onerror="this.remove()"><span>あなた</span></div>
+                <div class="cam"><img src="/mockup/img/candidate.jpg" alt="候補者のカメラ映像のイメージ" onerror="this.remove()"><span>あなた</span></div>
                 <div class="prog">質問 4 / 8</div>
                 <div class="bar"><i style="width:50%"></i></div>
                 <div class="bubble">これまでで一番成果が出た案件と、その要因を教えてください。</div>
@@ -552,7 +553,7 @@ nav a:hover{color:var(--violet)}
           <div class="scr"><div class="ui">
             <div class="ubar"><i></i><i></i><i></i><span>サキメン ― AI一次面談（候補者の画面）</span></div>
             <div class="ubody">
-              <div class="avatar"><img src="https://sakimen.miate.co.jp/illustrations/01_hero/ai-avatar.png" alt="" onerror="this.remove()"></div>
+              <div class="avatar"><img src="/mockup/img/ai-interviewer.jpg" alt="" onerror="this.remove()"></div>
               <div class="uchat">
                 <div class="ai">担当したSNSアカウントで、伸びた要因はどこにあると思いますか？</div>
                 <div class="me">投稿時間とフォーマットを検証し続けたことです。</div>
@@ -655,7 +656,7 @@ nav a:hover{color:var(--violet)}
     <div class="job-tabs"><button class="job-tab on" data-t="jp-video"><span class="ji"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 10l5-3v10l-5-3z"/></svg></span>動画編集者</button><button class="job-tab" data-t="jp-sns"><span class="ji"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg></span>SNSディレクター</button><button class="job-tab" data-t="jp-web"><span class="ji"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M3 9h18M8 21h8M12 17v4"/></svg></span>Webデザイナー</button></div>
     <div class="job-panel on" id="jp-video">
       <div class="jp-illust">
-        <div class="jp-img"><img src="/mockup/img/job-video.png" alt="動画編集者のイラスト" onerror="this.remove()"></div>
+        <div class="jp-img"><img src="/mockup/img/job-video.jpg" alt="動画編集者のイメージ" onerror="this.remove()"></div>
         <h3>動画編集者</h3>
         <p>制作スキルや進行経験など、職種に合わせた確認を行います。</p>
         <span class="jp-chip">職種別の質問テンプレート</span>
@@ -669,7 +670,7 @@ nav a:hover{color:var(--violet)}
     </div>
     <div class="job-panel" id="jp-sns">
       <div class="jp-illust">
-        <div class="jp-img"><img src="/mockup/img/job-sns.png" alt="SNSディレクターのイラスト" onerror="this.remove()"></div>
+        <div class="jp-img"><img src="/mockup/img/job-sns.jpg" alt="SNSディレクターのイメージ" onerror="this.remove()"></div>
         <h3>SNSディレクター</h3>
         <p>企画力や運用経験など、業務に必要な視点を整理します。</p>
         <span class="jp-chip">職種別の質問テンプレート</span>
@@ -683,7 +684,7 @@ nav a:hover{color:var(--violet)}
     </div>
     <div class="job-panel" id="jp-web">
       <div class="jp-illust">
-        <div class="jp-img"><img src="/mockup/img/job-web.png" alt="Webデザイナーのイラスト" onerror="this.remove()"></div>
+        <div class="jp-img"><img src="/mockup/img/job-web.jpg" alt="Webデザイナーのイメージ" onerror="this.remove()"></div>
         <h3>Webデザイナー</h3>
         <p>制作経験やコミュニケーションなど、判断材料を確認します。</p>
         <span class="jp-chip">職種別の質問テンプレート</span>
@@ -710,12 +711,7 @@ nav a:hover{color:var(--violet)}
         <div class="frame">
           <div class="pbar"><i></i><i></i><i></i><span>サキメン デモ動画</span></div>
           <div class="vscreen">
-            <div class="vl avatar"><img src="https://sakimen.miate.co.jp/illustrations/01_hero/ai-avatar.png" alt="" onerror="this.remove()"></div>
-            <div class="vr">
-              <div class="mt">質問 4 / 8</div>
-              <div class="bar"><i style="width:50%"></i></div>
-              <div class="bubble">これまでで一番成果が出た案件と、その要因を教えてください。</div>
-            </div>
+            <img class="vposter" src="/mockup/img/demo-screen.jpg" alt="サキメンのAI面談画面" onerror="this.remove()">
             <span class="play" aria-label="デモ動画を再生"></span>
             <div class="vcap">AI一次面談の流れ<small>面談URLの発行から評価レポートまで</small></div>
             <div class="vprog"><i></i></div>
@@ -751,7 +747,7 @@ nav a:hover{color:var(--violet)}
         <div class="body"><div class="sn">STEP 02</div><h3>職種を選んでURLを発行</h3><p>採用したい職種を選ぶと、面談URLが発行されます。候補者に送るだけです。</p><span class="time">約1分</span></div>
       </div>
       <div class="step">
-        <div class="mock" data-n="03"><div class="mini"><div class="vt avatar"></div><div class="bb">これまでで一番成果が出た案件は？</div></div></div>
+        <div class="mock" data-n="03"><div class="mini"><div class="vt avatar"><img src="/mockup/img/ai-interviewer.jpg" alt="" onerror="this.remove()"></div><div class="bb">これまでで一番成果が出た案件は？</div></div></div>
         <div class="body"><div class="sn">STEP 03</div><h3>AIが一次面談を実施</h3><p>候補者は好きな時間にURLから参加。職種に合わせた8つの質問に答えます。</p><span class="time">候補者の都合で24時間</span></div>
       </div>
       <div class="step">
